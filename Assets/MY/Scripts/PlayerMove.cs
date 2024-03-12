@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class PlayerMove : MonoBehaviour
 {
     public Animator animator;
-    public Button sRunButton; // 슬로우 런 버튼
-    public Button fRunButton; // 빠른 런 버튼
+    public Button sRunButton; // 슬로우 런 버튼(초코바)
+    public Button fRunButton; // 빠른 런 버튼(레드불)
     private bool isSlowWalk = true;
     private float transitionTime = 3f;
+
+    public RepeatMap map;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +21,7 @@ public class PlayerMove : MonoBehaviour
         // 버튼에 이벤트 리스너 추가
         sRunButton.onClick.AddListener(SRun);
         fRunButton.onClick.AddListener(FRun);
+
     }
 
     // Update is called once per frame
@@ -38,6 +41,7 @@ public class PlayerMove : MonoBehaviour
             isSlowWalk = false;
             animator.SetBool("is_Walk", false);
             animator.SetBool("is_sRun", true);
+            map.moveSpeed = 3.0f;
             yield return new WaitForSeconds(transitionTime);
             ResetToWalk();
         }
@@ -51,6 +55,7 @@ public class PlayerMove : MonoBehaviour
             isSlowWalk = false;
             animator.SetBool("is_Walk", false);
             animator.SetBool("is_fRun", true);
+            map.moveSpeed = 4.5f;
             yield return new WaitForSeconds(transitionTime);
             ResetToWalk();
         }
@@ -75,5 +80,6 @@ public class PlayerMove : MonoBehaviour
         animator.SetBool("is_sRun", false);
         animator.SetBool("is_fRun", false);
         animator.SetBool("is_Walk", true);
+        map.moveSpeed = 1;
     }
 }
