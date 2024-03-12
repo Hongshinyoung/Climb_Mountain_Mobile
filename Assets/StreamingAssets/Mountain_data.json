@@ -1,12 +1,56 @@
 {
-    "mountains": [
-        {"name": "한라산", "altitude": 1947.3},
-        {"name": "지리산", "altitude": 1915.4},
-        {"name": "설악산", "altitude": 1708.1},
-        {"name": "계방산", "altitude": "1579.1"},
-        {"name": "태백산", "altitude": 1565.4},
-        {"name": "가리왕산", "altitude": 1561.9},
-        {"name": "화악산", "altitude": 1468.3},
-        {"name": "방태산", "altitude": 1445.7}
-    ]
+  "mountains": [
+    {
+      "name": "팔봉산",
+      "altitude": 328.2
+    },
+    {
+      "name": "선운산",
+      "altitude": 334.7
+    },
+    {
+      "name": "미륵산",
+      "altitude": 458.4
+    },
+    {
+      "name": "마니산",
+      "altitude": 472.1
+    },
+    {
+      "name": "남산",
+      "altitude": 495.1
+    },
+    {
+      "name": "한라산",
+      "altitude": 1947.3
+    },
+    {
+      "name": "지리산",
+      "altitude": 1915.4
+    },
+    {
+      "name": "설악산",
+      "altitude": 1708.1
+    },
+    {
+      "name": "계방산",
+      "altitude": "1579.1"
+    },
+    {
+      "name": "태백산",
+      "altitude": 1565.4
+    },
+    {
+      "name": "가리왕산",
+      "altitude": 1561.9
+    },
+    {
+      "name": "화악산",
+      "altitude": 1468.3
+    },
+    {
+      "name": "방태산",
+      "altitude": 1445.7
+    }
+  ]
 }

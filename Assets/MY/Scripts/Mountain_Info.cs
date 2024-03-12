@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.IO;
+using System.Collections;
 
 public class MountainInfo : MonoBehaviour
 {
@@ -46,10 +47,30 @@ public class MountainInfo : MonoBehaviour
     {
         string filePath = Path.Combine(Application.streamingAssetsPath, "Mountain_data.json");
 
-        if (File.Exists(filePath))
+        if (Application.platform == RuntimePlatform.Android)
         {
+            // 안드로이드에서는 WWW 클래스를 사용하여 파일에 접근
+            StartCoroutine(LoadJsonFile(filePath));
+        }
+        else
+        {
+            // 에디터나 다른 플랫폼에서는 일반적인 파일 읽기로 처리
             string jsonData = File.ReadAllText(filePath);
             MountainDataWrapper dataWrapper = JsonUtility.FromJson<MountainDataWrapper>(jsonData);
+            mountainDataList = dataWrapper.mountains;
+        }
+    }
+
+    IEnumerator LoadJsonFile(string filePath)
+    {
+        // 안드로이드에서 파일 접근 시 WWW 클래스 사용
+        WWW www = new WWW(filePath);
+
+        yield return www;
+
+        if (string.IsNullOrEmpty(www.error))
+        {
+            MountainDataWrapper dataWrapper = JsonUtility.FromJson<MountainDataWrapper>(www.text);
             mountainDataList = dataWrapper.mountains;
         }
         else
