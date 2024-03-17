@@ -8,6 +8,7 @@ public class RepeatMap : MonoBehaviour
     public Transform startPoint;
     public Transform endPoint;
     public float moveSpeed = 1.5f;
+    public bool isReset;
 
     void Update()
     {
@@ -21,7 +22,8 @@ public class RepeatMap : MonoBehaviour
 
     void ResetMap()
     {
-        
         player.position = startPoint.position;
+        isReset = true;
+        if(isReset == true) isReset = false;
     }
 }

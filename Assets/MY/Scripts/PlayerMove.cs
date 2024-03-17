@@ -6,12 +6,21 @@ using UnityEngine.UI;
 public class PlayerMove : MonoBehaviour
 {
     public Animator animator;
-    public Button sRunButton; // 슬로우 런 버튼(초코바)
-    public Button fRunButton; // 빠른 런 버튼(레드불)
+    public Button button1; // 아이젠
+    public Button button2; // 초코바
+    public Button button3; // 프로틴
+    public Button button4; // 레드불
+    public Button button5; // 산삼
+    public Button button6; // 초코파이
+    public Button button7; // 도토리묵
+    public Button button8; //인삼
     private bool isSlowWalk = true;
     private float transitionTime = 3f;
 
+    public ParticleSystem buff;
+
     public RepeatMap map;
+    public MountainInfo mountainInfo;
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +28,8 @@ public class PlayerMove : MonoBehaviour
         animator = GetComponent<Animator>();
 
         // 버튼에 이벤트 리스너 추가
-        sRunButton.onClick.AddListener(SRun);
-        fRunButton.onClick.AddListener(FRun);
+        button2.onClick.AddListener(SRun);
+        button4.onClick.AddListener(FRun);
 
     }
 
@@ -41,6 +50,7 @@ public class PlayerMove : MonoBehaviour
             isSlowWalk = false;
             animator.SetBool("is_Walk", false);
             animator.SetBool("is_sRun", true);
+            buff.gameObject.SetActive(true);
             map.moveSpeed = 3.0f;
             yield return new WaitForSeconds(transitionTime);
             ResetToWalk();
@@ -55,6 +65,7 @@ public class PlayerMove : MonoBehaviour
             isSlowWalk = false;
             animator.SetBool("is_Walk", false);
             animator.SetBool("is_fRun", true);
+            buff.gameObject.SetActive(true);
             map.moveSpeed = 4.5f;
             yield return new WaitForSeconds(transitionTime);
             ResetToWalk();
@@ -73,13 +84,27 @@ public class PlayerMove : MonoBehaviour
         StartCoroutine(FRunCoroutine());
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            //뒤로 조금 이동했다 다시 제자리로 돌아오게
+            animator.SetTrigger("is_die");
+            map.moveSpeed = 0;
+        }
+
+    }
+
+
     // 워킹 상태로 변경하는 함수
-    void ResetToWalk()
+    public void ResetToWalk()
     {
         isSlowWalk = true;
         animator.SetBool("is_sRun", false);
         animator.SetBool("is_fRun", false);
         animator.SetBool("is_Walk", true);
+        animator.SetBool("realFast",false);
+        buff.gameObject.SetActive(false);
         map.moveSpeed = 1;
     }
 }

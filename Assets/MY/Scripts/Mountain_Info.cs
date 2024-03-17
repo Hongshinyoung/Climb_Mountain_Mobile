@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.IO;
-using System.Collections;
 
 public class MountainInfo : MonoBehaviour
 {
@@ -31,7 +30,7 @@ public class MountainInfo : MonoBehaviour
 
     private void Update()
     {
-        currentPosition += map.moveSpeed * Time.deltaTime;
+        currentPosition += map.moveSpeed * Time.deltaTime *0.5f;
         textCurrentMoveDistance.text = currentPosition.ToString("F2") + "m"; // 소숫점 2자리까지
 
         // 현재 이동거리가 다음 산의 높이와 같거나 높으면 다음 산의 정보 출력
@@ -45,32 +44,13 @@ public class MountainInfo : MonoBehaviour
 
     void LoadMountainDataFromJson()
     {
-        string filePath = Path.Combine(Application.streamingAssetsPath, "Mountain_data.json");
+        // 리소스 폴더에서 파일 로드
+        TextAsset jsonFile = Resources.Load<TextAsset>("Mountain_data");
 
-        if (Application.platform == RuntimePlatform.Android)
+        if (jsonFile != null)
         {
-            // 안드로이드에서는 WWW 클래스를 사용하여 파일에 접근
-            StartCoroutine(LoadJsonFile(filePath));
-        }
-        else
-        {
-            // 에디터나 다른 플랫폼에서는 일반적인 파일 읽기로 처리
-            string jsonData = File.ReadAllText(filePath);
+            string jsonData = jsonFile.text;
             MountainDataWrapper dataWrapper = JsonUtility.FromJson<MountainDataWrapper>(jsonData);
-            mountainDataList = dataWrapper.mountains;
-        }
-    }
-
-    IEnumerator LoadJsonFile(string filePath)
-    {
-        // 안드로이드에서 파일 접근 시 WWW 클래스 사용
-        WWW www = new WWW(filePath);
-
-        yield return www;
-
-        if (string.IsNullOrEmpty(www.error))
-        {
-            MountainDataWrapper dataWrapper = JsonUtility.FromJson<MountainDataWrapper>(www.text);
             mountainDataList = dataWrapper.mountains;
         }
         else
