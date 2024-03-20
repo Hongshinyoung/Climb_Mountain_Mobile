@@ -95,6 +95,11 @@ public class PlayerMove : MonoBehaviour
 
     }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        ResetToWalk();
+    }
+
 
     // 워킹 상태로 변경하는 함수
     public void ResetToWalk()
