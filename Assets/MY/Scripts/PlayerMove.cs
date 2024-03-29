@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,6 +39,11 @@ public class PlayerMove : MonoBehaviour
         {
             animator.SetBool("is_Walk", true);
         }
+        if (map.moveSpeed > 1.5)
+        {
+            buff.gameObject.SetActive(true);
+        }
+        else buff.gameObject.SetActive(false);
     }
 
     // 슬로우 런 버튼을 눌렀을 때 실행될 코루틴
@@ -54,6 +58,7 @@ public class PlayerMove : MonoBehaviour
             map.moveSpeed = 3.0f;
             yield return new WaitForSeconds(transitionTime);
             ResetToWalk();
+
         }
     }
 
@@ -76,12 +81,14 @@ public class PlayerMove : MonoBehaviour
     void SRun()
     {
         StartCoroutine(SRunCoroutine());
+        // ResetToWalk();
     }
 
     // 빠른 런 버튼을 눌렀을 때 호출될 함수
     void FRun()
     {
         StartCoroutine(FRunCoroutine());
+        // ResetToWalk();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -90,13 +97,20 @@ public class PlayerMove : MonoBehaviour
         {
             //뒤로 조금 이동했다 다시 제자리로 돌아오게
             animator.SetTrigger("is_die");
-            map.moveSpeed = 0;
+            StartCoroutine(StopWalk());
         }
 
     }
 
-    private void OnCollisionExit(Collision collision)
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    ResetToWalk();
+    //}
+
+    public IEnumerator StopWalk()
     {
+        map.moveSpeed = 0;
+        yield return new WaitForSeconds(3);
         ResetToWalk();
     }
 
@@ -108,7 +122,7 @@ public class PlayerMove : MonoBehaviour
         animator.SetBool("is_sRun", false);
         animator.SetBool("is_fRun", false);
         animator.SetBool("is_Walk", true);
-        animator.SetBool("realFast",false);
+        animator.SetBool("realFast", false);
         buff.gameObject.SetActive(false);
         map.moveSpeed = 1;
     }

@@ -48,7 +48,7 @@ public class Icecream_Man : MonoBehaviour
         iceMan.SetActive(false);
         isAppeared = false;
         menu.gameObject.SetActive(false);
-        InvokeRepeating("Appeared", 3f, Random.Range(30f, 300f));
+        InvokeRepeating("Appeared", 3f, Random.Range(200f, 400f));
         baBamBa.onClick.AddListener(EatBabamba);
     }
 

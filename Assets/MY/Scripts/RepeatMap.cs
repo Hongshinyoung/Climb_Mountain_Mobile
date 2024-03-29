@@ -7,6 +7,7 @@ public class RepeatMap : MonoBehaviour
     public Transform player;
     public Transform startPoint;
     public Transform endPoint;
+    public Transform enemyRootPos;
     public float moveSpeed = 1.5f;
     public bool isReset;
 
