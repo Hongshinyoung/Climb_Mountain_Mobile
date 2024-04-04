@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemPickUp : MonoBehaviour
 {
-    public item item;
+    public Item item;
     void PickUpItem()
     {
         InventoryManager.Instance.Add(item);

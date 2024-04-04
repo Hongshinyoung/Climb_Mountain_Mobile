@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
-    public List<item> items = new List<item>();
+    public List<Item> items = new List<Item>();
 
     public Transform itemContent;
     public GameObject inventoryItem;
@@ -16,12 +16,12 @@ public class InventoryManager : MonoBehaviour
         Instance = this;
     }
 
-    public void Add(item item)
+    public void Add(Item item)
     {
         items.Add(item);
     }
 
-    public void Remove(item item)
+    public void Remove(Item item)
     {
         items.Remove(item);
     }
@@ -33,7 +33,7 @@ public class InventoryManager : MonoBehaviour
             Destroy(item.gameObject);
         }
 
-        foreach (item item in items)
+        foreach (Item item in items)
         {
             GameObject obj = Instantiate(inventoryItem, itemContent);
             var itemName = obj.transform.Find("itemName").GetComponent<Text>();
