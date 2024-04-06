@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Gold gold;
+    public Item item;
+    public InventoryManager inventoryManager;
+
+    void BuyItem()
     {
-        
+        inventoryManager.Add(item);
     }
 
-    // Update is called once per frame
-    void Update()
+    void SellItem()
     {
-        
-    }
+        inventoryManager.Remove(item);
+    }    
 }

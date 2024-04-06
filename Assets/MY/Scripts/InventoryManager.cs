@@ -7,6 +7,7 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
     public List<Item> items = new List<Item>();
+    private int itemCount;
 
     public Transform itemContent;
     public GameObject inventoryItem;
@@ -19,6 +20,10 @@ public class InventoryManager : MonoBehaviour
     public void Add(Item item)
     {
         items.Add(item);
+        if(item.itemName == itemContent.name)
+        {
+            itemCount++;
+        }
     }
 
     public void Remove(Item item)
@@ -40,7 +45,7 @@ public class InventoryManager : MonoBehaviour
             var itemIcon = obj.transform.Find("itemIcon").GetComponent<Image>();
 
             itemName.text = item.name;
-            itemIcon.sprite = item.icon;
+            itemIcon.sprite = item.itemIcon;
         }
     }
 }
