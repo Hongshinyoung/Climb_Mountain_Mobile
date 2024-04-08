@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bc094b65baa4304c85f404b0cda1a5d, type: 3}
-  m_Name: MakgerLee
+  m_Name: Banana
   m_EditorClassIdentifier: 
-  id: 2
-  itemName: MakgerLee
-  description: "\uB9C9\uAC78\uB9AC"
-  icon: {fileID: 0}
+  id: 1
+  itemName: Banana
+  description: "\uBC14\uB098\uB098"
+  itemIcon: {fileID: 191139778, guid: 8fbf824c83f074f479f95992831d2f3e, type: 3}
+  itemType: 0

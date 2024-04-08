@@ -3,7 +3,27 @@ guid: 1fb86ed05a4eeb240934eecb68910375
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cover_Mat
+    second: {fileID: 2100000, guid: b04754dfd48f3884286c80081a41fb42, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass_Mat
+    second: {fileID: 2100000, guid: bd2b55ebe4107774e8733951cb21be70, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: label_Mat
+    second: {fileID: 2100000, guid: ee3e8d019e98ba246ad8feccd6040e1b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: liquid_Mat
+    second: {fileID: 2100000, guid: cbcdf4bf749b9af4c9f0d642f095cc59, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

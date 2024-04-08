@@ -23,11 +23,11 @@ public class Gold : MonoBehaviour
         autoIncreaseCoroutine = StartCoroutine(AutoIncreaseGold());
     }
 
-    private void OnDisable()
-    {
-        if (autoIncreaseCoroutine != null)
-            StopCoroutine(autoIncreaseCoroutine);
-    }
+    //private void OnDisable()
+    //{
+    //    if (autoIncreaseCoroutine != null)
+    //        StopCoroutine(autoIncreaseCoroutine);
+    //}
 
     public int GetGold()
     {

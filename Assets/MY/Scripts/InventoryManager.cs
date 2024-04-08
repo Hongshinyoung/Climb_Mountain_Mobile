@@ -20,10 +20,10 @@ public class InventoryManager : MonoBehaviour
     public void Add(Item item)
     {
         items.Add(item);
-        if(item.itemName == itemContent.name)
-        {
-            itemCount++;
-        }
+        //if (item.itemName == itemContent.name)
+        //{
+        //    itemCount++;
+        //}
     }
 
     public void Remove(Item item)
@@ -38,7 +38,7 @@ public class InventoryManager : MonoBehaviour
             Destroy(item.gameObject);
         }
 
-        foreach (Item item in items)
+        foreach (var item in items)
         {
             GameObject obj = Instantiate(inventoryItem, itemContent);
             var itemName = obj.transform.Find("itemName").GetComponent<Text>();

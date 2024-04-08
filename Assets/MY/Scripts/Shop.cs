@@ -8,13 +8,18 @@ public class Shop : MonoBehaviour
     public Item item;
     public InventoryManager inventoryManager;
 
-    void BuyItem()
+    public void BuyItem()
     {
         inventoryManager.Add(item);
     }
 
-    void SellItem()
+    public void SellItem()
     {
         inventoryManager.Remove(item);
     }    
+
+    void ItemFileLoad()
+    {
+
+    }
 }
