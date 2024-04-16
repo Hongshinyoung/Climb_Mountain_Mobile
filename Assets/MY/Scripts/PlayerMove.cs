@@ -27,8 +27,8 @@ public class PlayerMove : MonoBehaviour
         animator = GetComponent<Animator>();
 
         // 버튼에 이벤트 리스너 추가
-        button2.onClick.AddListener(SRun);
-        button4.onClick.AddListener(FRun);
+     //   button2.onClick.AddListener(SRun);
+     //   button4.onClick.AddListener(FRun);
 
     }
 
@@ -47,7 +47,7 @@ public class PlayerMove : MonoBehaviour
     }
 
     // 슬로우 런 버튼을 눌렀을 때 실행될 코루틴
-    IEnumerator SRunCoroutine()
+    public IEnumerator SRunCoroutine()
     {
         if (isSlowWalk)
         {
@@ -63,7 +63,7 @@ public class PlayerMove : MonoBehaviour
     }
 
     // 빠른 런 버튼을 눌렀을 때 실행될 코루틴
-    IEnumerator FRunCoroutine()
+    public IEnumerator FRunCoroutine()
     {
         if (isSlowWalk)
         {

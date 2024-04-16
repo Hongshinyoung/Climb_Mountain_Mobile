@@ -11,7 +11,7 @@ public class InventoryManager : MonoBehaviour
     public Transform itemContent;
     public GameObject inventoryItem;
     public InventoryItemController inventoryItemController;
-
+    public PlayerMove player;
     private void Awake()
     {
         Instance = this;
@@ -47,6 +47,7 @@ public class InventoryManager : MonoBehaviour
             var ClickItem = obj.GetComponentInChildren<Button>();
 
             ClickItem.onClick.AddListener(() => controller.UseItem());
+            ClickItem.onClick.AddListener(() => player.SRun());
             // ClickItem.onClick.AddListener(() => controller.RemoveItem());
            // ClickItem.onClick.AddListener(() => player.SRun());
 
