@@ -15,5 +15,6 @@ MonoBehaviour:
   id: 2
   itemName: Juice
   description: "\uC96C\uC2A4"
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 44dd38af4e8962b46888d4eab80beb18, type: 3}
   itemType: 0
+  itemPrice: 150

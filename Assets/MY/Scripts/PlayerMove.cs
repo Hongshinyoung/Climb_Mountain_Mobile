@@ -78,14 +78,14 @@ public class PlayerMove : MonoBehaviour
     }
 
     // 슬로우 런 버튼을 눌렀을 때 호출될 함수
-    void SRun()
+    public void SRun()
     {
         StartCoroutine(SRunCoroutine());
         // ResetToWalk();
     }
 
     // 빠른 런 버튼을 눌렀을 때 호출될 함수
-    void FRun()
+    public void FRun()
     {
         StartCoroutine(FRunCoroutine());
         // ResetToWalk();

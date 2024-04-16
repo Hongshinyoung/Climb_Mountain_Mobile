@@ -9,6 +9,7 @@ public class Gold : MonoBehaviour
 
     private int gold;
     private Coroutine autoIncreaseCoroutine;
+    public Item item;
 
     private void Awake()
     {
@@ -32,6 +33,20 @@ public class Gold : MonoBehaviour
     public int GetGold()
     {
         return gold;
+    }
+
+    public void EarnGold() //sell
+    {
+        gold += item.itemPrice;
+    }
+
+    public void UseGold()
+    {
+        if (gold >= item.itemPrice)
+        {
+            gold = gold - item.itemPrice;
+        }
+        else Debug.Log("돈이 부족합니다.");
     }
 
     private void IncreaseGold()

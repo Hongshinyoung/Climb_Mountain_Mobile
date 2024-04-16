@@ -17,3 +17,4 @@ MonoBehaviour:
   description: "\uBC14\uB098\uB098"
   itemIcon: {fileID: 191139778, guid: 8fbf824c83f074f479f95992831d2f3e, type: 3}
   itemType: 0
+  itemPrice: 100

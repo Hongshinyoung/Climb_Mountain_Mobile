@@ -1,3 +1,4 @@
+// InventoryManager.cs
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,10 +8,9 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
     public List<Item> items = new List<Item>();
-    private int itemCount;
-
     public Transform itemContent;
     public GameObject inventoryItem;
+    public InventoryItemController inventoryItemController;
 
     private void Awake()
     {
@@ -20,10 +20,6 @@ public class InventoryManager : MonoBehaviour
     public void Add(Item item)
     {
         items.Add(item);
-        //if (item.itemName == itemContent.name)
-        //{
-        //    itemCount++;
-        //}
     }
 
     public void Remove(Item item)
@@ -33,7 +29,8 @@ public class InventoryManager : MonoBehaviour
 
     public void ListItems()
     {
-        foreach(Transform item in itemContent)
+        // 인벤토리 창을 업데이트할 때마다 모든 아이템을 삭제하고 다시 추가
+        foreach (Transform item in itemContent)
         {
             Destroy(item.gameObject);
         }
@@ -41,11 +38,21 @@ public class InventoryManager : MonoBehaviour
         foreach (var item in items)
         {
             GameObject obj = Instantiate(inventoryItem, itemContent);
+            var controller = obj.GetComponent<InventoryItemController>();
+            controller.item = item;
+           // var player = obj.GetComponent<PlayerMove>();
+            
             var itemName = obj.transform.Find("itemName").GetComponent<Text>();
             var itemIcon = obj.transform.Find("itemIcon").GetComponent<Image>();
+            var ClickItem = obj.GetComponentInChildren<Button>();
 
-            itemName.text = item.name;
+            ClickItem.onClick.AddListener(() => controller.UseItem());
+            // ClickItem.onClick.AddListener(() => controller.RemoveItem());
+           // ClickItem.onClick.AddListener(() => player.SRun());
+
+            itemName.text = item.itemName;
             itemIcon.sprite = item.itemIcon;
         }
     }
+
 }
