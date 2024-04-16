@@ -7,7 +7,7 @@ public class Gold : MonoBehaviour
 {
     public static Gold Instance { get; private set; }
 
-    private int gold;
+    private int gold = 130;
     private Coroutine autoIncreaseCoroutine;
     public Item item;
 
@@ -40,13 +40,17 @@ public class Gold : MonoBehaviour
         gold += item.itemPrice;
     }
 
-    public void UseGold()
+    public bool UseGold(int amount) //buy
     {
-        if (gold >= item.itemPrice)
+        if (gold >= amount)
         {
-            gold = gold - item.itemPrice;
+            gold -= amount;
+            return true;
         }
-        else Debug.Log("돈이 부족합니다.");
+        else
+        {
+            return false;
+        }
     }
 
     private void IncreaseGold()

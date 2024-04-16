@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ShopManager : MonoBehaviour
 {
     public Shop shop;
+    public Gold gold;
     public List<Item> shopItem = new List<Item>();
     public GameObject shopItems;
     public Transform shopItemContent;
@@ -72,10 +73,17 @@ public class ShopManager : MonoBehaviour
 
     public void BuyItem(Item item)
     {
-        // 상점에서 아이템을 구매한 후 인벤토리에 추가
-        InventoryManager.Instance.Add(item);
-        // 구매가 완료되면 상점 아이템 목록을 다시 표시
-        ListShopItem();
+        int playerGold = gold.GetGold();
+        if (playerGold >= item.itemPrice)
+        {
+            gold.UseGold(item.itemPrice);
+            // 상점에서 아이템을 구매한 후 인벤토리에 추가
+            InventoryManager.Instance.Add(item);
+            // 구매가 완료되면 상점 아이템 목록을 다시 표시
+            ListShopItem();
+        }
+        else Debug.Log("골드가 부족합니다.");
+       
     }
 
     public void SellItem(Item item)
