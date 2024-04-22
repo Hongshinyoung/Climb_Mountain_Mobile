@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
 
         mesh.enabled = false;
         // 5초에서 30초 사이에 한 번씩 isVisible을 true로 변경
-        InvokeRepeating("AppearRandomly", 3f, Random.Range(150f, 300f));
+        InvokeRepeating("AppearRandomly", 20f, Random.Range(150f, 300f));
     }
 
     // Update is called once per frame

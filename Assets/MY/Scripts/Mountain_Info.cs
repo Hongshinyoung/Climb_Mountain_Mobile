@@ -8,8 +8,9 @@ public class MountainInfo : MonoBehaviour
     public Text textMountainName; // 산 이름 출력 텍스트
     public Text textMountainAltitude; // 산 높이 출력 텍스트
     public Text textCurrentMoveDistance; // 현재 이동거리 텍스트
-    private float currentPosition = 0;
+    public  float currentPosition = 0;
     public RepeatMap map;
+    public StageManager stageManager;
 
     private List<MountainData> mountainDataList = new List<MountainData>();
 
@@ -59,11 +60,17 @@ public class MountainInfo : MonoBehaviour
         }
     }
 
-    void DisplayMountainInfo()
+    public void DisplayMountainInfo()
     {
         // 현재 산의 이름과 높이 출력
         textMountainName.text = mountainDataList[currentMountainIndex].name;
         textMountainAltitude.text = mountainDataList[currentMountainIndex].altitude.ToString() + "m";
+    }
+
+    public void EditToSelectMountainAltitude()
+    {
+        textMountainName.text = mountainDataList[stageManager.currentStage].name;
+        textMountainAltitude.text = mountainDataList[stageManager.currentStage].altitude.ToString() + "m";
     }
 
     [System.Serializable]

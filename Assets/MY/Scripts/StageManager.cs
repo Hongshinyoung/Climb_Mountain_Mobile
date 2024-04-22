@@ -6,28 +6,51 @@ public class StageManager : MonoBehaviour
     public Button[] stageButtons;
     public Image starImage;
     public Sprite[] starSprites; // 0: 하, 1: 중, 2: 상
-
-    private int currentStage;
+    public PlayerMove player;
+    public GameObject[] stage;
+    public GameObject[] stageStartPos;
+    public MountainInfo mountainInfo;
+    public  int currentStage = 0;
 
     void Start()
     {
         // 스테이지 버튼에 클릭 이벤트 추가
         for (int i = 0; i < stageButtons.Length; i++)
         {
-            int stageIndex = i + 1; // 스테이지 번호는 1부터 시작
-            stageButtons[i].onClick.AddListener(() => LoadStage(stageIndex));
+            int stageIndex = i;
+            stageButtons[i].onClick.AddListener(() => SceneTrans(stageIndex));
+
         }
     }
 
     // 스테이지 로드 함수
-    void LoadStage(int stageIndex)
+    public void SceneTrans(int stageIndex)
     {
         currentStage = stageIndex;
-        Debug.Log("Loading Stage " + stageIndex);
-        // 여기에 스테이지를 로드하는 코드를 추가
-        // 스테이지 클리어 후 등급 결정 함수 호출
-        DetermineGrade();
+        player.transform.position -= new Vector3(transform.position.x, 1000, transform.position.z);
+
+        for (int i = 0; i < stage.Length; i++)
+        {
+            stage[i].SetActive(false);
+        }
+
+        mountainInfo.currentPosition = 0;
+        stage[stageIndex].SetActive(true);
+        SelectStage();
+      //  Debug.Log(mountainInfo.textMountainName.text + ", " + stageButtons[currentStage].GetComponentInChildren<Text>().text);
+
+
+        //stageStartPos[i] 위치로 이동
+
+        //DetermineGrade();
     }
+
+    void SelectStage()
+    {
+       // mountainInfo.textMountainName.text = stageButtons[currentStage].GetComponentInChildren<Text>().text;
+        mountainInfo.EditToSelectMountainAltitude();
+    }
+
 
     // 등급 결정 함수
     void DetermineGrade()
