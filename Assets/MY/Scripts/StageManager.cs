@@ -10,6 +10,7 @@ public class StageManager : MonoBehaviour
     public GameObject[] stage;
     public GameObject[] stageStartPos;
     public MountainInfo mountainInfo;
+    public ClimbTime climbTime;
     public  int currentStage = 0;
 
     void Start()
@@ -19,6 +20,8 @@ public class StageManager : MonoBehaviour
         {
             int stageIndex = i;
             stageButtons[i].onClick.AddListener(() => SceneTrans(stageIndex));
+            stageButtons[i].onClick.AddListener(() => climbTime.ResetStopwatch());
+            stageButtons[i].onClick.AddListener(() => climbTime.StartStopwatch());
 
         }
     }
