@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -249,6 +249,7 @@ MonoBehaviour:
   particle: {fileID: 10924766}
   isRainy: 0
   map: {fileID: 2007066515}
+  lightManager: {fileID: 885681318}
 --- !u!4 &10924764
 Transform:
   m_ObjectHideFlags: 0
@@ -6794,11 +6795,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1001 &103317339
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6905,11 +6903,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1001 &114353101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7339,11 +7334,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1 &141317597
 GameObject:
   m_ObjectHideFlags: 0
@@ -7882,11 +7874,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1 &169150805
 GameObject:
   m_ObjectHideFlags: 0
@@ -9888,11 +9877,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1001 &285185902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11795,11 +11781,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1001 &376514490
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12463,11 +12446,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 1219180604}
-  endPoint: {fileID: 917118327}
-  enemyRootPos: {fileID: 1065849642}
+  lanes:
+  - {fileID: 509841195}
+  - {fileID: 989104859}
+  - {fileID: 1797281939}
   moveSpeed: 1.5
-  isReset: 0
 --- !u!4 &417889263
 Transform:
   m_ObjectHideFlags: 0
@@ -13497,11 +13480,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 1321030279}
-  endPoint: {fileID: 519980881}
-  enemyRootPos: {fileID: 1257432764}
+  lanes:
+  - {fileID: 509841195}
+  - {fileID: 989104859}
+  - {fileID: 1797281939}
   moveSpeed: 1.5
-  isReset: 0
 --- !u!4 &496519901
 Transform:
   m_ObjectHideFlags: 0
@@ -13552,11 +13535,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 752310662}
-  endPoint: {fileID: 1977576450}
-  enemyRootPos: {fileID: 1659930432}
+  lanes:
+  - {fileID: 509841195}
+  - {fileID: 989104859}
+  - {fileID: 1797281939}
   moveSpeed: 1.5
-  isReset: 0
 --- !u!4 &508753308
 Transform:
   m_ObjectHideFlags: 0
@@ -13656,6 +13639,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 508872462}
   m_CullTransparentMesh: 1
+--- !u!1 &509841194
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 509841195}
+  - component: {fileID: 509841196}
+  m_Layer: 0
+  m_Name: lane1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &509841195
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509841194}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: -1.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1799459711}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &509841196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509841194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ec18d9451fb0144badfa2fc2a3a897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  buff: {fileID: 0}
+  map: {fileID: 2007066515}
+  mountainInfo: {fileID: 0}
 --- !u!1 &512262577
 GameObject:
   m_ObjectHideFlags: 0
@@ -16682,11 +16713,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 1652639908}
-  endPoint: {fileID: 95344338}
-  enemyRootPos: {fileID: 397100757}
+  lanes:
+  - {fileID: 509841195}
+  - {fileID: 989104859}
+  - {fileID: 1797281939}
   moveSpeed: 1.5
-  isReset: 0
 --- !u!4 &637108260
 Transform:
   m_ObjectHideFlags: 0
@@ -18488,11 +18519,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 1292345894}
-  endPoint: {fileID: 556073332}
-  enemyRootPos: {fileID: 889731149}
+  lanes:
+  - {fileID: 509841195}
+  - {fileID: 989104859}
+  - {fileID: 1797281939}
   moveSpeed: 1.5
-  isReset: 0
 --- !u!4 &763017450
 Transform:
   m_ObjectHideFlags: 0
@@ -19169,11 +19200,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 1143163093}
-  endPoint: {fileID: 756782277}
-  enemyRootPos: {fileID: 1155368542}
+  lanes:
+  - {fileID: 509841195}
+  - {fileID: 989104859}
+  - {fileID: 1797281939}
   moveSpeed: 1.5
-  isReset: 0
 --- !u!4 &788070669
 Transform:
   m_ObjectHideFlags: 0
@@ -23473,11 +23504,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1001 &987002677
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23557,6 +23585,54 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 987002677}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &989104858
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 989104859}
+  - component: {fileID: 989104860}
+  m_Layer: 0
+  m_Name: lane2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &989104859
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989104858}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1799459711}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &989104860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989104858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ec18d9451fb0144badfa2fc2a3a897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  buff: {fileID: 0}
+  map: {fileID: 2007066515}
+  mountainInfo: {fileID: 0}
 --- !u!1001 &991644172
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23663,11 +23739,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1 &994299505
 GameObject:
   m_ObjectHideFlags: 0
@@ -23932,11 +24005,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1 &1003581013
 GameObject:
   m_ObjectHideFlags: 0
@@ -24808,11 +24878,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1 &1071623813
 GameObject:
   m_ObjectHideFlags: 0
@@ -25341,11 +25408,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1 &1099283569
 GameObject:
   m_ObjectHideFlags: 0
@@ -26190,11 +26254,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1 &1143163092
 GameObject:
   m_ObjectHideFlags: 0
@@ -27672,11 +27733,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1 &1209453978
 GameObject:
   m_ObjectHideFlags: 0
@@ -27938,11 +27996,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1 &1213973996
 GameObject:
   m_ObjectHideFlags: 0
@@ -28905,11 +28960,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1 &1257432763
 GameObject:
   m_ObjectHideFlags: 0
@@ -30345,11 +30397,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1 &1314582384
 GameObject:
   m_ObjectHideFlags: 0
@@ -30998,11 +31047,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1 &1345467272
 GameObject:
   m_ObjectHideFlags: 0
@@ -31480,11 +31526,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1 &1396605676
 GameObject:
   m_ObjectHideFlags: 0
@@ -32435,11 +32478,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1001 &1464134901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32785,11 +32825,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1 &1487844084
 GameObject:
   m_ObjectHideFlags: 0
@@ -33394,11 +33431,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1 &1505590637
 GameObject:
   m_ObjectHideFlags: 0
@@ -34461,11 +34495,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 166195523}
-  endPoint: {fileID: 1676282303}
-  enemyRootPos: {fileID: 1845273712}
+  lanes:
+  - {fileID: 509841195}
+  - {fileID: 989104859}
+  - {fileID: 1797281939}
   moveSpeed: 1.5
-  isReset: 0
 --- !u!4 &1567607379
 Transform:
   m_ObjectHideFlags: 0
@@ -36673,11 +36707,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1001 &1678111027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36908,11 +36939,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1001 &1695213430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37761,11 +37789,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1 &1727181858
 GameObject:
   m_ObjectHideFlags: 0
@@ -38861,11 +38886,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1 &1795160218
 GameObject:
   m_ObjectHideFlags: 0
@@ -39024,6 +39046,54 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1795954227}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1797281938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1797281939}
+  - component: {fileID: 1797281940}
+  m_Layer: 0
+  m_Name: lane3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1797281939
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797281938}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 0, z: 1.5000001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1799459711}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1797281940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797281938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ec18d9451fb0144badfa2fc2a3a897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  buff: {fileID: 0}
+  map: {fileID: 2007066515}
+  mountainInfo: {fileID: 0}
 --- !u!1001 &1797755009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39103,6 +39173,41 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1797755009}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1799459710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1799459711}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1799459711
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799459710}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1797281939}
+  - {fileID: 989104859}
+  - {fileID: 509841195}
+  - {fileID: 1587355227}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1800848196
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39209,11 +39314,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1001 &1814659725
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39934,11 +40036,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1 &1863761545
 GameObject:
   m_ObjectHideFlags: 0
@@ -40203,11 +40302,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1 &1871794028
 GameObject:
   m_ObjectHideFlags: 0
@@ -42024,11 +42120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1001 &1956193074
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43230,11 +43323,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 1089639362}
-  endPoint: {fileID: 2142244020}
-  enemyRootPos: {fileID: 780171765}
+  lanes:
+  - {fileID: 509841195}
+  - {fileID: 989104859}
+  - {fileID: 1797281939}
   moveSpeed: 1.5
-  isReset: 0
 --- !u!1 &2021329921
 GameObject:
   m_ObjectHideFlags: 0
@@ -44630,11 +44723,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1001 &2101517735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44741,11 +44831,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1001 &2103041836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44931,11 +45018,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1587355227}
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  enemyRootPos: {fileID: 0}
+  lanes: []
   moveSpeed: 1
-  isReset: 0
 --- !u!1001 &2109497648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45853,7 +45937,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1799459711}
     m_Modifications:
     - target: {fileID: 1297913932021656769, guid: 35715babbbe80404d9ad54501ab5bca6,
         type: 3}
@@ -45875,11 +45959,51 @@ PrefabInstance:
       propertyPath: baBamBa
       value: 
       objectReference: {fileID: 916505160}
+    - target: {fileID: 4747392601261688335, guid: 35715babbbe80404d9ad54501ab5bca6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4747392601261688335, guid: 35715babbbe80404d9ad54501ab5bca6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4799875055746825090, guid: 35715babbbe80404d9ad54501ab5bca6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4840967100616640093, guid: 35715babbbe80404d9ad54501ab5bca6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4840967100616640093, guid: 35715babbbe80404d9ad54501ab5bca6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5245552412294783804, guid: 35715babbbe80404d9ad54501ab5bca6,
         type: 3}
       propertyPath: map
       value: 
       objectReference: {fileID: 2007066515}
+    - target: {fileID: 5338100958108139473, guid: 35715babbbe80404d9ad54501ab5bca6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5754006718160680971, guid: 35715babbbe80404d9ad54501ab5bca6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5754006718160680971, guid: 35715babbbe80404d9ad54501ab5bca6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6760404710266740964, guid: 35715babbbe80404d9ad54501ab5bca6,
         type: 3}
       propertyPath: map
@@ -45923,7 +46047,7 @@ PrefabInstance:
     - target: {fileID: 7874070073677719073, guid: 35715babbbe80404d9ad54501ab5bca6,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7874070073677719073, guid: 35715babbbe80404d9ad54501ab5bca6,
         type: 3}
@@ -45933,7 +46057,7 @@ PrefabInstance:
     - target: {fileID: 7874070073677719073, guid: 35715babbbe80404d9ad54501ab5bca6,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7874070073677719073, guid: 35715babbbe80404d9ad54501ab5bca6,
         type: 3}
@@ -46001,7 +46125,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 817001185}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5216647492605304039, guid: 35715babbbe80404d9ad54501ab5bca6, type: 3}
+    - {fileID: 5380095969997429941, guid: 35715babbbe80404d9ad54501ab5bca6, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35715babbbe80404d9ad54501ab5bca6, type: 3}
@@ -46012,7 +46138,6 @@ SceneRoots:
   - {fileID: 885681317}
   - {fileID: 790551683}
   - {fileID: 512262580}
-  - {fileID: 4978778884952877870}
   - {fileID: 1358693632}
   - {fileID: 10924764}
   - {fileID: 5402344}
@@ -46027,3 +46152,4 @@ SceneRoots:
   - {fileID: 637108260}
   - {fileID: 417889263}
   - {fileID: 788070669}
+  - {fileID: 1799459711}

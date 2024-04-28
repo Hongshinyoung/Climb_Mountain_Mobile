@@ -11,30 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MY/Scene/InGame.unity
     guid: 11faff32f4e3372468972dd1762e1cf8
-  - enabled: 1
-    path: Assets/MY/Scene/Scene1.unity
-    guid: bd97f1d190a1a2c4b8fe14737ff148d2
-  - enabled: 1
-    path: Assets/MY/Scene/Scene2.unity
-    guid: 726b3d5a57ceab841b2af166a6f7fcc3
-  - enabled: 1
-    path: Assets/MY/Scene/Scene3.unity
-    guid: 35c8e89f60a350f46a0b0679b0ccbca0
-  - enabled: 1
-    path: Assets/MY/Scene/Scene4.unity
-    guid: d60cd1f85062c37428c9141ad207be67
-  - enabled: 1
-    path: Assets/MY/Scene/Scene5.unity
-    guid: 16cc07a05d50e21408939b19b6b65b04
-  - enabled: 1
-    path: Assets/MY/Scene/Scene6.unity
-    guid: dbd2d8f3cb1943944a003455feed9797
-  - enabled: 1
-    path: Assets/MY/Scene/Scene7.unity
-    guid: 180c3c8d507dddf4297687ecba5f5e11
-  - enabled: 1
-    path: Assets/MY/Scene/Scene8.unity
-    guid: d026e7f0c5b0f2c4693dbd43c09707ea
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 7aa8de96c40dd6046a5f2d2a0b379873,
       type: 2}

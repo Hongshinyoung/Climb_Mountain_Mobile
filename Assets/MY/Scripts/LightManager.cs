@@ -10,12 +10,13 @@ public class LightManager : MonoBehaviour
     {
         light = GetComponent<Light>();
     }
-    void StartEffect()
+    public void StartEffect()
     {
         if(weather.isRainy)
         {
-            Invoke("StopEffect", 3f);
             light.enabled = false;
+            Invoke("StopEffect", 3f);
+            
         }
 
     }

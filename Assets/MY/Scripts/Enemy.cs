@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
     {
         mesh.enabled = false;
         col.enabled = false;
-        transform.position = map.enemyRootPos.position;
+        //transform.position = map.enemyRootPos.position;
         //   transform.position = new Vector3(-10,0,0.7f);
     }
 

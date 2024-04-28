@@ -5,14 +5,14 @@ using UnityEngine.UI;
 public class PlayerMove : MonoBehaviour
 {
     public Animator animator;
-    public Button button1; // 아이젠
-    public Button button2; // 초코바
-    public Button button3; // 프로틴
-    public Button button4; // 레드불
-    public Button button5; // 산삼
-    public Button button6; // 초코파이
-    public Button button7; // 도토리묵
-    public Button button8; //인삼
+    //public Button button1; // 아이젠
+    //public Button button2; // 초코바
+    //public Button button3; // 프로틴
+    //public Button button4; // 레드불
+    //public Button button5; // 산삼
+    //public Button button6; // 초코파이
+    //public Button button7; // 도토리묵
+    //public Button button8; //인삼
     private bool isSlowWalk = true;
     private float transitionTime = 3f;
 

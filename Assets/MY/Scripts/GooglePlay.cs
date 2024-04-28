@@ -6,14 +6,16 @@ public class GooglePlay : MonoBehaviour
     public void Login()
     {
         GPGSBinder.Inst.Login();
-        GPGSBinder.Inst.LoadCloud("mySave", (sucess, data) => log = $"{sucess}, {data}");
+        InventoryManager.Instance.LoadInventoryFromCloud();
+       // GPGSBinder.Inst.LoadCloud("mySave", (sucess, data) => log = $"{sucess}, {data}");
 
     }
 
     public void LogOut()
     {
         GPGSBinder.Inst.Logout();
-        GPGSBinder.Inst.SaveCloud("mySave", "my Data", sucess => log = $"{sucess}");
+        InventoryManager.Instance.SaveInventoryToCloud();
+     //   GPGSBinder.Inst.SaveCloud("mySave", "my Data", sucess => log = $"{sucess}");
     }
 
     public void DeleteData()

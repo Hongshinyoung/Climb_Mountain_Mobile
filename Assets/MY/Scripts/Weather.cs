@@ -5,6 +5,7 @@ public class Weather : MonoBehaviour
     public ParticleSystem particle;
     public bool isRainy;
     public RepeatMap map;
+    public LightManager lightManager;
 
 
     private void Start()
@@ -20,6 +21,7 @@ public class Weather : MonoBehaviour
         particle.gameObject.SetActive(true);
         isRainy = true;
         map.moveSpeed *= 0.3f;
+        lightManager.StartEffect();
         Invoke("StopEffect", 3f);
     }
 

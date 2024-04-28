@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -48,10 +49,10 @@ public class StageManager : MonoBehaviour
         //DetermineGrade();
     }
 
-    void SelectStage()
+    void SelectStage() //산 정보 가져오기
     {
        // mountainInfo.textMountainName.text = stageButtons[currentStage].GetComponentInChildren<Text>().text;
-        mountainInfo.EditToSelectMountainAltitude();
+        mountainInfo.EditToSelectMountainAltitude(); //산이름과 매칭 시켜 데이터 불러오기
     }
 
 
@@ -61,6 +62,7 @@ public class StageManager : MonoBehaviour
         // 이 부분에서 실제로 클리어 조건을 평가하고 등급을 결정합니다.
         // 예를 들어, 클리어 조건을 만족했을 때 등급을 부여하고,
         // 그에 따라 적절한 등급 이미지를 표시합니다.
+
         int grade = CalculateGrade(); // 등급 계산 함수 호출
         ShowGrade(grade); // 등급 표시 함수 호출
     }
