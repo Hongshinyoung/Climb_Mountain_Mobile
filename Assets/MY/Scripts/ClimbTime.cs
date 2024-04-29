@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ClimbTime : MonoBehaviour
 {
     public Text timerText;
-    private float elapsedTime = 0f;
+    public  float elapsedTime = 0f;
     private bool isRunning = false;
     public StageManager stageManager;
 

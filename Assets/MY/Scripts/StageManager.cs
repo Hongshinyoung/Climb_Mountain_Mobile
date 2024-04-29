@@ -1,11 +1,11 @@
-using System.Diagnostics;
+
 using UnityEngine;
 using UnityEngine.UI;
 
 public class StageManager : MonoBehaviour
 {
     public Button[] stageButtons;
-    public Image starImage;
+    public Image[] starImage;
     public Sprite[] starSprites; // 0: 하, 1: 중, 2: 상
     public PlayerMove player;
     public GameObject[] stage;
@@ -63,19 +63,40 @@ public class StageManager : MonoBehaviour
         // 예를 들어, 클리어 조건을 만족했을 때 등급을 부여하고,
         // 그에 따라 적절한 등급 이미지를 표시합니다.
 
-        int grade = CalculateGrade(); // 등급 계산 함수 호출
-        ShowGrade(grade); // 등급 표시 함수 호출
+        int elapsedTimeMinutes = (int)(climbTime.elapsedTime / 60f); // 경과 시간(분) 계산
+        //switch (elapsedTimeMinutes)
+        //{
+        //    case int n when n >= 60:
+        //        ShowGrade(2); // 1시간 이상 소요 시 "상" 등급 부여
+        //        break;
+        //    case 60:
+        //        ShowGrade(1); // 1시간 소요 시 "중" 등급 부여
+        //        break;
+        //    default:
+        //        ShowGrade(0); // 1시간 미만 소요 시 "하" 등급 부여
+        //        break;
+        //}
+         //  경과 시간에 따라 등급 부여
+        if (elapsedTimeMinutes >= 60)
+        {
+            ShowGrade(2); // 1시간 이상 소요 시 "상" 등급 부여
+        }
+        else if (elapsedTimeMinutes == 60)
+        {
+            ShowGrade(1); // 1시간 소요 시 "중" 등급 부여
+        }
+        else
+        {
+            ShowGrade(0); // 1시간 미만 소요 시 "하" 등급 부여
+        }
     }
 
-    // 등급 계산 함수 (임시로 랜덤 등급 반환)
-    int CalculateGrade()
-    {
-        return Random.Range(0, 3); // 0, 1, 2 중에서 랜덤으로 등급 반환
-    }
+
 
     // 등급 표시 함수
     void ShowGrade(int grade)
     {
-        starImage.sprite = starSprites[grade];
+        starImage[grade].sprite = starSprites[grade];
+        Debug.Log("등급 표시");
     }
 }

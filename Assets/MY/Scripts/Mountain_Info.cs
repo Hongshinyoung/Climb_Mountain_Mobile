@@ -5,10 +5,11 @@ using System.IO;
 
 public class MountainInfo : MonoBehaviour
 {
+    public bool isCleared = false;
     public Text textMountainName; // 산 이름 출력 텍스트
     public Text textMountainAltitude; // 산 높이 출력 텍스트
     public Text textCurrentMoveDistance; // 현재 이동거리 텍스트
-    public  float currentPosition = 0;
+    public  float currentPosition = 300;
     public RepeatMap map;
     public StageManager stageManager;
 
@@ -39,6 +40,7 @@ public class MountainInfo : MonoBehaviour
         {
             currentMountainIndex++;
             currentPosition = 0;
+            isCleared = true; isCleared = false;
             DisplayMountainInfo();
         }
     }
