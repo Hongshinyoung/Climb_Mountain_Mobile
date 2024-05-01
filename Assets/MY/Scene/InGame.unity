@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6570,7 +6570,7 @@ GameObject:
   - component: {fileID: 95344339}
   m_Layer: 0
   m_Name: EndPoint
-  m_TagString: Untagged
+  m_TagString: EndPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6609,7 +6609,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 4}
+  m_Size: {x: 1, y: 2, z: 15}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &95349308
 GameObject:
@@ -6798,6 +6798,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1001 &103317339
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6906,6 +6908,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1001 &114353101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7412,6 +7416,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1 &141317597
 GameObject:
   m_ObjectHideFlags: 0
@@ -7952,6 +7958,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1 &169150805
 GameObject:
   m_ObjectHideFlags: 0
@@ -9955,6 +9963,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1001 &285185902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11859,6 +11869,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1 &366800955
 GameObject:
   m_ObjectHideFlags: 0
@@ -12677,6 +12689,8 @@ MonoBehaviour:
   - {fileID: 989104859}
   - {fileID: 1797281939}
   moveSpeed: 1.5
+  startPoint: {fileID: 1219180604}
+  endPoint: {fileID: 917118327}
 --- !u!4 &417889263
 Transform:
   m_ObjectHideFlags: 0
@@ -13711,6 +13725,8 @@ MonoBehaviour:
   - {fileID: 989104859}
   - {fileID: 1797281939}
   moveSpeed: 1.5
+  startPoint: {fileID: 1219180604}
+  endPoint: {fileID: 917118327}
 --- !u!4 &496519901
 Transform:
   m_ObjectHideFlags: 0
@@ -13766,6 +13782,8 @@ MonoBehaviour:
   - {fileID: 989104859}
   - {fileID: 1797281939}
   moveSpeed: 1.5
+  startPoint: {fileID: 1219180604}
+  endPoint: {fileID: 917118327}
 --- !u!4 &508753308
 Transform:
   m_ObjectHideFlags: 0
@@ -14162,7 +14180,7 @@ GameObject:
   - component: {fileID: 519980882}
   m_Layer: 0
   m_Name: EndPoint
-  m_TagString: Untagged
+  m_TagString: EndPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14201,7 +14219,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 4}
+  m_Size: {x: 1, y: 2, z: 15}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &528052913
 GameObject:
@@ -14816,7 +14834,7 @@ GameObject:
   - component: {fileID: 556073333}
   m_Layer: 0
   m_Name: EndPoint
-  m_TagString: Untagged
+  m_TagString: EndPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14855,7 +14873,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 4}
+  m_Size: {x: 1, y: 2, z: 15}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &562071251
 GameObject:
@@ -14895,19 +14913,6 @@ MonoBehaviour:
   - {fileID: 1975259770}
   - {fileID: 1992196342}
   - {fileID: 1753195972}
-  starImage:
-  - {fileID: 1638408703}
-  - {fileID: 1151201345}
-  - {fileID: 909280236}
-  - {fileID: 414346222}
-  - {fileID: 1104976266}
-  - {fileID: 366800957}
-  - {fileID: 700513735}
-  - {fileID: 123456900}
-  starSprites:
-  - {fileID: 21300000, guid: 8cd758b9a826d4a46b3756b3d6b9c973, type: 3}
-  - {fileID: 21300000, guid: 0d6379c754e9ae54397d653dd731c082, type: 3}
-  - {fileID: 21300000, guid: 927fb9983acb8514c8a703ba6faeae7f, type: 3}
   player: {fileID: 1587355222}
   stage:
   - {fileID: 2007066513}
@@ -14918,10 +14923,31 @@ MonoBehaviour:
   - {fileID: 637108258}
   - {fileID: 417889261}
   - {fileID: 788070667}
-  stageStartPos: []
+  stageStartPos:
+  - {fileID: 1089639361}
+  - {fileID: 166195522}
+  - {fileID: 752310661}
+  - {fileID: 1321030278}
+  - {fileID: 1292345893}
+  - {fileID: 1652639907}
+  - {fileID: 1219180603}
+  - {fileID: 1143163092}
   mountainInfo: {fileID: 817001185}
   climbTime: {fileID: 1271017586}
   currentStage: 0
+  starImages:
+  - {fileID: 1638408703}
+  - {fileID: 1151201345}
+  - {fileID: 909280236}
+  - {fileID: 414346222}
+  - {fileID: 1104976266}
+  - {fileID: 366800957}
+  - {fileID: 700513735}
+  - {fileID: 123456900}
+  starSprite:
+  - {fileID: 21300000, guid: 8cd758b9a826d4a46b3756b3d6b9c973, type: 3}
+  - {fileID: 21300000, guid: 0d6379c754e9ae54397d653dd731c082, type: 3}
+  - {fileID: 21300000, guid: 927fb9983acb8514c8a703ba6faeae7f, type: 3}
 --- !u!4 &562071253
 Transform:
   m_ObjectHideFlags: 0
@@ -16952,6 +16978,8 @@ MonoBehaviour:
   - {fileID: 989104859}
   - {fileID: 1797281939}
   moveSpeed: 1.5
+  startPoint: {fileID: 1219180604}
+  endPoint: {fileID: 917118327}
 --- !u!4 &637108260
 Transform:
   m_ObjectHideFlags: 0
@@ -18678,7 +18706,7 @@ GameObject:
   - component: {fileID: 756782278}
   m_Layer: 0
   m_Name: EndPoint
-  m_TagString: Untagged
+  m_TagString: EndPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18717,7 +18745,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 4}
+  m_Size: {x: 1, y: 2, z: 15}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &762978421
 PrefabInstance:
@@ -18833,6 +18861,8 @@ MonoBehaviour:
   - {fileID: 989104859}
   - {fileID: 1797281939}
   moveSpeed: 1.5
+  startPoint: {fileID: 1219180604}
+  endPoint: {fileID: 917118327}
 --- !u!4 &763017450
 Transform:
   m_ObjectHideFlags: 0
@@ -19514,6 +19544,8 @@ MonoBehaviour:
   - {fileID: 989104859}
   - {fileID: 1797281939}
   moveSpeed: 1.5
+  startPoint: {fileID: 1143163093}
+  endPoint: {fileID: 756782277}
 --- !u!4 &788070669
 Transform:
   m_ObjectHideFlags: 0
@@ -20090,11 +20122,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab01f57687dc1dc488af743e165a01be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isCleared: 0
+  IsCleared: 0
   textMountainName: {fileID: 1914650755}
   textMountainAltitude: {fileID: 508872464}
   textCurrentMoveDistance: {fileID: 1554254705}
-  currentPosition: 326
+  currentPosition: 200
   map: {fileID: 2007066515}
   stageManager: {fileID: 562071252}
 --- !u!1 &821869868
@@ -22464,7 +22496,7 @@ GameObject:
   - component: {fileID: 917118328}
   m_Layer: 0
   m_Name: EndPoint
-  m_TagString: Untagged
+  m_TagString: EndPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22503,7 +22535,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 4}
+  m_Size: {x: 1, y: 2, z: 15}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &922452882
 GameObject:
@@ -23891,6 +23923,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1001 &987002677
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24126,6 +24160,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1 &994299505
 GameObject:
   m_ObjectHideFlags: 0
@@ -24392,6 +24428,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1 &1003581013
 GameObject:
   m_ObjectHideFlags: 0
@@ -25265,6 +25303,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1 &1071623813
 GameObject:
   m_ObjectHideFlags: 0
@@ -25795,6 +25835,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1 &1099283569
 GameObject:
   m_ObjectHideFlags: 0
@@ -26717,6 +26759,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1 &1143163092
 GameObject:
   m_ObjectHideFlags: 0
@@ -28271,6 +28315,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1 &1209453978
 GameObject:
   m_ObjectHideFlags: 0
@@ -28534,6 +28580,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1 &1213973996
 GameObject:
   m_ObjectHideFlags: 0
@@ -29498,6 +29546,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1 &1257432763
 GameObject:
   m_ObjectHideFlags: 0
@@ -29684,7 +29734,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 601690211}
   elapsedTime: 0
-  stageManager: {fileID: 0}
+  stageManager: {fileID: 562071252}
 --- !u!1 &1279580219
 GameObject:
   m_ObjectHideFlags: 0
@@ -30936,6 +30986,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1 &1314582384
 GameObject:
   m_ObjectHideFlags: 0
@@ -31586,6 +31638,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1 &1345467272
 GameObject:
   m_ObjectHideFlags: 0
@@ -32065,6 +32119,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1 &1396605676
 GameObject:
   m_ObjectHideFlags: 0
@@ -33017,6 +33073,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1001 &1464134901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33364,6 +33422,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1 &1487844084
 GameObject:
   m_ObjectHideFlags: 0
@@ -33970,6 +34030,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1 &1505590637
 GameObject:
   m_ObjectHideFlags: 0
@@ -35038,6 +35100,8 @@ MonoBehaviour:
   - {fileID: 989104859}
   - {fileID: 1797281939}
   moveSpeed: 1.5
+  startPoint: {fileID: 166195523}
+  endPoint: {fileID: 1676282303}
 --- !u!4 &1567607379
 Transform:
   m_ObjectHideFlags: 0
@@ -37174,7 +37238,7 @@ GameObject:
   - component: {fileID: 1676282304}
   m_Layer: 0
   m_Name: EndPoint
-  m_TagString: Untagged
+  m_TagString: EndPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37213,7 +37277,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 4}
+  m_Size: {x: 1, y: 2, z: 15}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1677591170
 PrefabInstance:
@@ -37323,6 +37387,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1001 &1678111027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37555,6 +37621,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1001 &1695213430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38405,6 +38473,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1 &1727181858
 GameObject:
   m_ObjectHideFlags: 0
@@ -39503,6 +39573,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1 &1795160218
 GameObject:
   m_ObjectHideFlags: 0
@@ -39931,6 +40003,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1001 &1814659725
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40653,6 +40727,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1 &1863761545
 GameObject:
   m_ObjectHideFlags: 0
@@ -40919,6 +40995,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1 &1871794028
 GameObject:
   m_ObjectHideFlags: 0
@@ -41859,7 +41937,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1916206118
 RectTransform:
   m_ObjectHideFlags: 0
@@ -42738,6 +42816,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1001 &1956193074
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43200,7 +43280,7 @@ GameObject:
   - component: {fileID: 1977576451}
   m_Layer: 0
   m_Name: EndPoint
-  m_TagString: Untagged
+  m_TagString: EndPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43239,7 +43319,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 4}
+  m_Size: {x: 1, y: 2, z: 15}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1979116051
 GameObject:
@@ -43946,6 +44026,8 @@ MonoBehaviour:
   - {fileID: 989104859}
   - {fileID: 1797281939}
   moveSpeed: 1.5
+  startPoint: {fileID: 1089639362}
+  endPoint: {fileID: 2142244020}
 --- !u!1 &2021329921
 GameObject:
   m_ObjectHideFlags: 0
@@ -45343,6 +45425,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1001 &2101517735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45451,6 +45535,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1001 &2103041836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45638,6 +45724,8 @@ MonoBehaviour:
   player: {fileID: 1587355227}
   lanes: []
   moveSpeed: 1
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1001 &2109497648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46429,7 +46517,7 @@ GameObject:
   - component: {fileID: 2142244021}
   m_Layer: 0
   m_Name: EndPoint
-  m_TagString: Untagged
+  m_TagString: EndPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46468,7 +46556,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 4}
+  m_Size: {x: 1, y: 2, z: 15}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2143840606
 PrefabInstance:

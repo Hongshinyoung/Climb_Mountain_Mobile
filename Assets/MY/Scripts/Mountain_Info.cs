@@ -1,15 +1,14 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
-using System.IO;
 
 public class MountainInfo : MonoBehaviour
 {
-    public bool isCleared = false;
+    public bool IsCleared = false;
     public Text textMountainName; // 산 이름 출력 텍스트
     public Text textMountainAltitude; // 산 높이 출력 텍스트
     public Text textCurrentMoveDistance; // 현재 이동거리 텍스트
-    public  float currentPosition = 300;
+    public float currentPosition = 300;
     public RepeatMap map;
     public StageManager stageManager;
 
@@ -32,7 +31,7 @@ public class MountainInfo : MonoBehaviour
 
     private void Update()
     {
-        currentPosition += map.moveSpeed * Time.deltaTime *0.5f;
+        currentPosition += map.moveSpeed * Time.deltaTime * 0.5f;
         textCurrentMoveDistance.text = currentPosition.ToString("F2") + "m"; // 소숫점 2자리까지
 
         // 현재 이동거리가 다음 산의 높이와 같거나 높으면 다음 산의 정보 출력
@@ -40,8 +39,9 @@ public class MountainInfo : MonoBehaviour
         {
             currentMountainIndex++;
             currentPosition = 0;
-            isCleared = true; isCleared = false;
+            IsCleared = true;
             DisplayMountainInfo();
+            stageManager.DetermineGrade(); // 산 클리어 시 등급 부여
         }
     }
 
@@ -68,11 +68,21 @@ public class MountainInfo : MonoBehaviour
         textMountainName.text = mountainDataList[currentMountainIndex].name;
         textMountainAltitude.text = mountainDataList[currentMountainIndex].altitude.ToString() + "m";
     }
-
     public void EditToSelectMountainAltitude()
     {
         textMountainName.text = mountainDataList[stageManager.currentStage].name;
         textMountainAltitude.text = mountainDataList[stageManager.currentStage].altitude.ToString() + "m";
+    }
+
+    // 산 클리어 조건 확인
+    public void CheckStageClear()
+    {
+        // 만약 클리어 되었다면
+        //if (IsCleared)
+        //{
+        //    // 해당 스테이지의 별 표시
+        //    stageManager.ShowStars(currentMountainIndex + 1);
+        //}
     }
 
     [System.Serializable]

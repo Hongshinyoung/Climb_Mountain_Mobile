@@ -1,18 +1,18 @@
-
 using UnityEngine;
 using UnityEngine.UI;
 
 public class StageManager : MonoBehaviour
 {
-    public Button[] stageButtons;
-    public Image[] starImage;
-    public Sprite[] starSprites; // 0: 하, 1: 중, 2: 상
+    public Button[] stageButtons; // 맵 선택 버튼
     public PlayerMove player;
-    public GameObject[] stage;
-    public GameObject[] stageStartPos;
+    public GameObject[] stage; // 맵 종류
+    public GameObject[] stageStartPos; // 각 맵의 시작 포지션
     public MountainInfo mountainInfo;
     public ClimbTime climbTime;
-    public  int currentStage = 0;
+    public int currentStage = 0; // 현재 선택된 스테이지의 인덱스
+
+    public Image[] starImages; // 각 스테이지 버튼에 별 이미지를 표시할 Image 컴포넌트 배열
+    public Sprite[] starSprite; // 별 이미지
 
     void Start()
     {
@@ -21,82 +21,95 @@ public class StageManager : MonoBehaviour
         {
             int stageIndex = i;
             stageButtons[i].onClick.AddListener(() => SceneTrans(stageIndex));
-            stageButtons[i].onClick.AddListener(() => climbTime.ResetStopwatch());
-            stageButtons[i].onClick.AddListener(() => climbTime.StartStopwatch());
-
         }
     }
 
     // 스테이지 로드 함수
     public void SceneTrans(int stageIndex)
     {
-        currentStage = stageIndex;
-        player.transform.position -= new Vector3(transform.position.x, 1000, transform.position.z);
+        currentStage = stageIndex; // 현재 선택된 스테이지의 인덱스 설정
+        mountainInfo.currentPosition = 0;
+        // 이동 속도 초기화
+        player.ResetToWalk();
 
+
+        // 플레이어의 위치를 해당 스테이지의 시작 위치로 이동
+        player.transform.position = stageStartPos[stageIndex].transform.position;
+
+        // 모든 스테이지를 비활성화
         for (int i = 0; i < stage.Length; i++)
         {
             stage[i].SetActive(false);
         }
 
-        mountainInfo.currentPosition = 0;
+        // 현재 스테이지 활성화
         stage[stageIndex].SetActive(true);
-        SelectStage();
-      //  Debug.Log(mountainInfo.textMountainName.text + ", " + stageButtons[currentStage].GetComponentInChildren<Text>().text);
 
-
-        //stageStartPos[i] 위치로 이동
-
-        //DetermineGrade();
+        // 현재 산의 정보 표시
+        mountainInfo.DisplayMountainInfo();
+        mountainInfo.EditToSelectMountainAltitude();
+        // 클리어 조건 확인
+        //mountainInfo.CheckStageClear();
     }
 
-    void SelectStage() //산 정보 가져오기
+    // 별 표시 함수
+    public void ShowStars(int starCount)
     {
-       // mountainInfo.textMountainName.text = stageButtons[currentStage].GetComponentInChildren<Text>().text;
-        mountainInfo.EditToSelectMountainAltitude(); //산이름과 매칭 시켜 데이터 불러오기
-    }
-
-
-    // 등급 결정 함수
-    void DetermineGrade()
-    {
-        // 이 부분에서 실제로 클리어 조건을 평가하고 등급을 결정합니다.
-        // 예를 들어, 클리어 조건을 만족했을 때 등급을 부여하고,
-        // 그에 따라 적절한 등급 이미지를 표시합니다.
-
-        int elapsedTimeMinutes = (int)(climbTime.elapsedTime / 60f); // 경과 시간(분) 계산
-        //switch (elapsedTimeMinutes)
-        //{
-        //    case int n when n >= 60:
-        //        ShowGrade(2); // 1시간 이상 소요 시 "상" 등급 부여
-        //        break;
-        //    case 60:
-        //        ShowGrade(1); // 1시간 소요 시 "중" 등급 부여
-        //        break;
-        //    default:
-        //        ShowGrade(0); // 1시간 미만 소요 시 "하" 등급 부여
-        //        break;
-        //}
-         //  경과 시간에 따라 등급 부여
-        if (elapsedTimeMinutes >= 60)
+        if (mountainInfo.IsCleared)
         {
-            ShowGrade(2); // 1시간 이상 소요 시 "상" 등급 부여
+            mountainInfo.IsCleared = false;
+            Debug.Log("현재 스테이지:" + currentStage +"별갯수: " + starCount + "클리어상태: "+mountainInfo.IsCleared );
+            starImages[currentStage].sprite = starSprite[starCount -1]; // 별갯수1,2,3이 배열 0,1,2로 있으므로 별 개수에서 -1 해준다.
+            starImages[currentStage].gameObject.SetActive(true);
         }
-        else if (elapsedTimeMinutes == 60)
+        // 클리어한 스테이지까지만 별을 표시
+        //for (int i = 0; i < starImages.Length; i++)
+        //{
+        //    if (i < starCount)
+        //    {
+        //        starImages[i].sprite = starSprite[i];
+        //        starImages[i].gameObject.SetActive(true);
+        //    }
+        //    else
+        //    {
+        //        starImages[i].gameObject.SetActive(false);
+        //    }
+        //}
+    }
+
+    // 등급 결정 및 별 표시 함수
+    public void DetermineGrade()
+    {
+        // 산의 현재 시간 가져오기
+        float mountainTime = climbTime.elapsedTime;
+
+        // 분 단위로 변환
+        int minutes = (int)(mountainTime / 60f);
+
+        // 별 등급 결정
+        int starCount = 0;
+        if (minutes >= 60)
         {
-            ShowGrade(1); // 1시간 소요 시 "중" 등급 부여
+            starCount = 1;
+        }
+        else if (minutes == 60)
+        {
+            starCount = 2;
         }
         else
         {
-            ShowGrade(0); // 1시간 미만 소요 시 "하" 등급 부여
+            starCount = 3;
         }
+
+        // 별 표시
+        ShowStars(starCount);
     }
 
 
-
-    // 등급 표시 함수
-    void ShowGrade(int grade)
+    // 현재 선택된 스테이지가 클리어되었는지 확인하는 함수
+    public bool IsStageCleared(int stageIndex)
     {
-        starImage[grade].sprite = starSprites[grade];
-        Debug.Log("등급 표시");
+        // 클리어 여부를 확인하여 반환하는 로직 구현
+        return mountainInfo.IsCleared;
     }
 }

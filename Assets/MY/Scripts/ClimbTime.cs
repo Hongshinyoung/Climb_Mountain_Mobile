@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ClimbTime : MonoBehaviour
 {
     public Text timerText;
-    public  float elapsedTime = 0f;
+    public float elapsedTime = 0f;
     private bool isRunning = false;
     public StageManager stageManager;
 
@@ -28,9 +26,11 @@ public class ClimbTime : MonoBehaviour
     {
         int minutes = (int)(elapsedTime / 60f);
         int seconds = (int)(elapsedTime % 60f);
-        int milliseconds = (int)((elapsedTime * 1000f) % 1000f);
 
-        timerText.text = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+        // 등급 결정 및 별 표시 요청
+        stageManager.DetermineGrade();
     }
 
     public void StartStopwatch()

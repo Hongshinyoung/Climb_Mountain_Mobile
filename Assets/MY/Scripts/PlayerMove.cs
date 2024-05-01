@@ -124,6 +124,6 @@ public class PlayerMove : MonoBehaviour
         animator.SetBool("is_Walk", true);
         animator.SetBool("realFast", false);
         buff.gameObject.SetActive(false);
-        map.moveSpeed = 1;
+        map.moveSpeed = 1.5f;
     }
 }
