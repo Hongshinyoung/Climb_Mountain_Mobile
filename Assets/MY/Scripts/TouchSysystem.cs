@@ -31,12 +31,12 @@ public class TouchSysystem : MonoBehaviour
                 StartCoroutine(SpeedUp());
             }
         }
-        //if(isTouched)
-        //{
-        //    Touch touch = Input.GetTouch(0);
-        //    StartCoroutine(SpeedUp());
-        //    Debug.Log("터치 발생: " + touch.position);
-        //}
+        if (isTouched)
+        {
+            Touch touch = Input.GetTouch(0);
+            StartCoroutine(SpeedUp());
+            Debug.Log("터치 발생: " + touch.position);
+        }
     }
 
     IEnumerator SpeedUp()

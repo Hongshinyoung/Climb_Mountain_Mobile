@@ -5,19 +5,10 @@ using UnityEngine.UI;
 public class PlayerMove : MonoBehaviour
 {
     public Animator animator;
-    //public Button button1; // 아이젠
-    //public Button button2; // 초코바
-    //public Button button3; // 프로틴
-    //public Button button4; // 레드불
-    //public Button button5; // 산삼
-    //public Button button6; // 초코파이
-    //public Button button7; // 도토리묵
-    //public Button button8; //인삼
     private bool isSlowWalk = true;
     private float transitionTime = 3f;
 
     public ParticleSystem buff;
-
     public RepeatMap map;
     public MountainInfo mountainInfo;
 
@@ -39,7 +30,7 @@ public class PlayerMove : MonoBehaviour
         {
             animator.SetBool("is_Walk", true);
         }
-        if (map.moveSpeed > 1.5)
+        if (map.moveSpeed > 2)
         {
             buff.gameObject.SetActive(true);
         }
@@ -55,7 +46,7 @@ public class PlayerMove : MonoBehaviour
             animator.SetBool("is_Walk", false);
             animator.SetBool("is_sRun", true);
             buff.gameObject.SetActive(true);
-            map.moveSpeed = 3.0f;
+            map.moveSpeed = 3.5f;
             yield return new WaitForSeconds(transitionTime);
             ResetToWalk();
 
@@ -71,7 +62,7 @@ public class PlayerMove : MonoBehaviour
             animator.SetBool("is_Walk", false);
             animator.SetBool("is_fRun", true);
             buff.gameObject.SetActive(true);
-            map.moveSpeed = 4.5f;
+            map.moveSpeed = 5f;
             yield return new WaitForSeconds(transitionTime);
             ResetToWalk();
         }
@@ -110,7 +101,7 @@ public class PlayerMove : MonoBehaviour
     public IEnumerator StopWalk()
     {
         map.moveSpeed = 0;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2.5f);
         ResetToWalk();
     }
 

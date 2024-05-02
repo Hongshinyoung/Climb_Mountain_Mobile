@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
         if (animator != null && mesh.enabled)
         {
             animator.SetBool("isWalk", true);
-            transform.Translate(Vector3.down * 9 * Time.deltaTime);
+            transform.Translate(Vector3.down * 7 * Time.deltaTime);
         }
     }
 

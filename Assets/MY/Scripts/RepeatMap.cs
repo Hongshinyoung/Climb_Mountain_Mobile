@@ -1,3 +1,4 @@
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class RepeatMap : MonoBehaviour
@@ -5,24 +6,50 @@ public class RepeatMap : MonoBehaviour
     public Transform player;
     public Transform[] lanes;
     public float moveSpeed = 1.5f;
-    public Transform startPoint;
-    public Transform endPoint;
+    public Transform[] startPoint;
+    public Transform[] endPoint;
+    public StageManager stageManager;
+    public Transform enemyStartPos;
     private bool isMoving = true;
     private Vector2 touchStartPos; // 레인 이동을 위한 터치 시작 위치
     private Vector2 touchEndPos;
     private int currentLaneIndex = 1; // 플레이어가 현재 있는 레인 인덱스
     private bool isSwipe = false;
 
+    private void Start()
+    {
+        
+        player.transform.position = startPoint[stageManager.currentStage].transform.position;
+        //모든 맵 비활성화
+        for (int i = 0; i < stageManager.stage.Length; i++)
+        {
+            stageManager.stage[i].SetActive(false);
+        }
+
+        // 현재 스테이지 활성화
+        stageManager.stage[stageManager.currentStage].SetActive(true);
+    }
     private void FixedUpdate()
     {
+        transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
         if (isMoving)
         {
-            transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
+            if (player.position.x <= endPoint[stageManager.currentStage].position.x)
+            {
+                ResetMap();
+            }
+            
         }
-        MovePlayer();
+        DoSwipe();
     }
 
-    void MovePlayer()
+    void ResetMap()
+    {
+        player.transform.position = startPoint[stageManager.currentStage].transform.position;
+        isMoving = true;
+    }
+
+    void DoSwipe()
     {
         // 모바일 환경에서 스크롤 또는 드래그 입력 처리
         if (Input.touchCount > 0 && !isSwipe && isMoving)
@@ -58,17 +85,12 @@ public class RepeatMap : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            isMoving = true; // 부딪히면 다시 맵을 이동하도록 설정
-            Debug.Log("플레이어와 부딪힘");
-        }
-        else if (collision.gameObject.CompareTag("EndPoint"))
-        {
-            Debug.Log("엔드포인트에 닿음");
-            transform.position = startPoint.position; // endPoint에 도달하면 startPoint로 이동
-        }
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        isMoving = true; // 부딪히면 다시 맵을 이동하도록 설정
+    //        Debug.Log("플레이어와 부딪힘");
+    //    }
+    //}
 }
