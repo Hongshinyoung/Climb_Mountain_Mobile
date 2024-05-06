@@ -13,7 +13,7 @@ public class Weather : MonoBehaviour
         isRainy = false;
         particle.gameObject.SetActive(false);
         particle = GetComponent<ParticleSystem>();
-        InvokeRepeating("StartEffect", 3f, Random.Range(100f, 500f));
+        InvokeRepeating("StartEffect", 20f, Random.Range(100f, 500f));
         
     }
     void StartEffect()

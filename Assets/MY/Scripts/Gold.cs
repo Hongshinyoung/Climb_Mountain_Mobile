@@ -35,6 +35,11 @@ public class Gold : MonoBehaviour
         return gold;
     }
 
+    public void SetGold(int updataGold)
+    {
+        gold =  updataGold;
+    }
+
     public void EarnGold() //sell
     {
         gold += item.itemPrice;

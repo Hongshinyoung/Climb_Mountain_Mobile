@@ -1,4 +1,3 @@
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class RepeatMap : MonoBehaviour
@@ -18,7 +17,6 @@ public class RepeatMap : MonoBehaviour
 
     private void Start()
     {
-        
         player.transform.position = startPoint[stageManager.currentStage].transform.position;
         //모든 맵 비활성화
         for (int i = 0; i < stageManager.stage.Length; i++)
@@ -38,7 +36,7 @@ public class RepeatMap : MonoBehaviour
             {
                 ResetMap();
             }
-            
+
         }
         DoSwipe();
     }
@@ -65,7 +63,7 @@ public class RepeatMap : MonoBehaviour
                 float swipeDistance = touchEndPos.x - touchStartPos.x;
 
                 // 스와이프 거리에 따라 플레이어를 이동시킴
-                if (Mathf.Abs(swipeDistance) > Screen.width * 0.05f) // 스와이프 거리가 일정값 이상일 때만 처리
+                if (Mathf.Abs(swipeDistance) > Screen.width * 0.1f) // 스와이프 거리가 일정값 이상일 때만 처리
                 {
                     int direction = swipeDistance > 0 ? 1 : -1; // 오른쪽으로 스와이프하면 1, 왼쪽으로 스와이프하면 -1
                     currentLaneIndex = Mathf.Clamp(currentLaneIndex + direction, 0, lanes.Length - 1);
@@ -76,8 +74,14 @@ public class RepeatMap : MonoBehaviour
 
         // 현재 레인으로 플레이어를 이동시킴
         Vector3 targetPosition = lanes[currentLaneIndex].position;
-        targetPosition.y = player.position.y;
-        player.position = Vector3.MoveTowards(player.position, targetPosition, moveSpeed * Time.deltaTime);
+        targetPosition.y = player.position.y; //위 아래로 고정
+        targetPosition.x = player.position.x; //앞 뒤로 고정
+        if (isSwipe)
+        {
+            player.position = Vector3.MoveTowards(player.position, targetPosition, 5 * Time.deltaTime);
+        }
+        else targetPosition.z = player.position.z; //스와이프 할 때만 z축 이동하며 아닐땐 고정
+       
 
         if (player.position == targetPosition)
         {
