@@ -1,5 +1,12 @@
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+
+[System.Serializable]
+public class ClimbingTimeData
+{
+    public float[] ClearTime = new float[7]; //스테이지 별 클리어 타임
+}
 
 public class ClimbTime : MonoBehaviour
 {
@@ -7,7 +14,9 @@ public class ClimbTime : MonoBehaviour
     public float elapsedTime = 0f;
     private bool isRunning = false;
     public StageManager stageManager;
-
+    public MountainInfo mountainInfo;
+    private ClimbingTimeData climbingTime;
+    private const string filePath = "ClimbData";
     private void Awake()
     {
         StartStopwatch();
@@ -19,6 +28,34 @@ public class ClimbTime : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
             UpdateTimerUI();
+        }
+    }
+
+    void ClearTimeUpdate()
+    {
+        if(mountainInfo.IsCleared)
+        {
+            climbingTime.ClearTime[stageManager.currentStage - 1] = elapsedTime/60;
+            SaveClimbTime();
+        }
+    }
+
+    public void SaveClimbTime() //등반시간 데이터 -> json
+    {
+        string dataPath = Application.persistentDataPath + filePath;
+        ClimbingTimeData data = new ClimbingTimeData();
+        string jsonData = JsonUtility.ToJson(data);
+        File.WriteAllText(dataPath, jsonData);
+    }
+
+    public void LoadClimbTime() //json -> 등반시간 데이터
+    {
+        string dataPath = Path.Combine(Application.persistentDataPath, filePath);
+        if (File.Exists(Application.persistentDataPath+dataPath))
+        {
+
+            string jsonData = File.ReadAllText(dataPath);
+            climbingTime = JsonUtility.FromJson<ClimbingTimeData>(jsonData);
         }
     }
 

@@ -45,7 +45,7 @@ public class StageManager : MonoBehaviour
         // 현재 스테이지 활성화
         stage[stageIndex].SetActive(true);
 
-        // 현재 산의 정보 표시
+        // 현재 산의 정보 표시pp
         mountainInfo.DisplayMountainInfo();
         mountainInfo.EditToSelectMountainAltitude();
         // 클리어 조건 확인
