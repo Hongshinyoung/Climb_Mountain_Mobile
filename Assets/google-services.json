@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1081120884967",
+    "project_id": "mountainclimb-b414a",
+    "storage_bucket": "mountainclimb-b414a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081120884967:android:1154e1b178c5020dc57a42",
+        "android_client_info": {
+          "package_name": "com.GaebongCompany.Climb_Mountain"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3my9GbxidJaqu_99F-pw2aCTV9Y2oM40"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

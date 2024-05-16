@@ -1,5 +1,6 @@
 using System.IO;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 [System.Serializable]
@@ -16,6 +17,7 @@ public class ClimbTime : MonoBehaviour
     public StageManager stageManager;
     public MountainInfo mountainInfo;
     private ClimbingTimeData climbingTime;
+    private RankingSystemData rankingSystemData;
     private const string filePath = "ClimbData";
     private void Awake()
     {
@@ -36,7 +38,34 @@ public class ClimbTime : MonoBehaviour
         if(mountainInfo.IsCleared)
         {
             climbingTime.ClearTime[stageManager.currentStage - 1] = elapsedTime/60;
+
+            if (climbingTime.ClearTime[stageManager.currentStage - 1] <= 30)
+            {
+                UpdateRankingData("1000"); // 등급에 따른 랭킹 데이터 업데이트
+            }
+            else if (climbingTime.ClearTime[stageManager.currentStage - 1] >= 31 && climbingTime.ClearTime[stageManager.currentStage - 1] <= 40)
+            {
+                UpdateRankingData("800"); // 등급에 따른 랭킹 데이터 업데이트
+            }
+            else if (climbingTime.ClearTime[stageManager.currentStage - 1] >= 41 && climbingTime.ClearTime[stageManager.currentStage - 1] <= 50)
+            {
+                UpdateRankingData("600"); // 등급에 따른 랭킹 데이터 업데이트
+            }
+            else if (climbingTime.ClearTime[stageManager.currentStage - 1] >= 51)
+            {
+                UpdateRankingData("300"); // 등급에 따른 랭킹 데이터 업데이트
+            }
             SaveClimbTime();
+        }
+    }
+
+    public void UpdateRankingData(string Score)
+    {
+
+        // 랭킹 시스템 데이터의 점수 업데이트
+        for (int i = 0; i < rankingSystemData.txtScore.Length; i++)
+        {
+            rankingSystemData.txtScore[i].text = Score;
         }
     }
 
