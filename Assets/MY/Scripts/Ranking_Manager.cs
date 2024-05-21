@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Firebase.Storage;
+using Firebase.Analytics;
 
 [System.Serializable]
 public class RankingSystemData
@@ -25,7 +27,7 @@ public class Ranking_Manager : MonoBehaviour
 
     }
 
-    void LoadRankingData()
+    public void LoadRankingData()
     {
         //여기서 로그인 아이디 출력
 
@@ -33,13 +35,12 @@ public class Ranking_Manager : MonoBehaviour
         {
             if (success)
             {
-                rankingSystemData.txtNickName[0].text = userId.ToString();
+                rankingSystemData.txtNickName[0].text = userId.ToString(); //랭킹 닉네임 = 구글유저아이디
             }
             else
             {
                 Debug.Log("로그인실패");
             }
-            SortScoreList();
         });
     }
 
@@ -48,7 +49,7 @@ public class Ranking_Manager : MonoBehaviour
         rankingSystemDataList.Add(name);
     }
    
-    void ScoreUpdate(string score)
+    public void ScoreUpdate(string score) //climbTime에서 시간을 점수로 변환가져옴
     {
         climbTime.UpdateRankingData(score);
         SortScoreList();
@@ -56,7 +57,7 @@ public class Ranking_Manager : MonoBehaviour
 
     void SortScoreList()
     {
-        rankingSystemDataList.Sort((a,b) => int.Parse(b.txtScore[0].text).CompareTo(int.Parse(a.txtScore[0].text))); //내림차순으로 정렬
+        rankingSystemDataList.Sort((a,b) => int.Parse(b.txtScore[0].text).CompareTo(int.Parse(a.txtScore[0].text))); //랭킹 스코어 내림차순으로 정렬
     }
 
 

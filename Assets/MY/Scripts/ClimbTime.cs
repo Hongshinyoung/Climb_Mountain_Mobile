@@ -1,6 +1,5 @@
 using System.IO;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 [System.Serializable]
