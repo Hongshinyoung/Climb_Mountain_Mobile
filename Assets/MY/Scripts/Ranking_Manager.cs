@@ -14,17 +14,24 @@ public class RankingSystemData
 
 public class Ranking_Manager : MonoBehaviour
 {
-    RankingSystemData rankingSystemData;
-    ClimbTime climbTime;
-    //public Text[] rankingIndex;
-    //public Text[] rankingName;
-    //public Text[] rankingScore;
+    public RankingSystemData rankingSystemData;
+    public ClimbTime climbTime;
+    public Text[] rankingIndex;
+    public Text[] rankingName;
+    public Text[] rankingScore;
 
     private List<RankingSystemData> rankingSystemDataList = new List<RankingSystemData>();
 
     void SaveRankingData()
     {
 
+    }
+
+    public void ShowData()
+    {
+        rankingSystemData.txtRank = rankingIndex;
+        rankingSystemData.txtNickName = rankingName;
+        rankingSystemData.txtScore = rankingScore;
     }
 
     public void LoadRankingData()

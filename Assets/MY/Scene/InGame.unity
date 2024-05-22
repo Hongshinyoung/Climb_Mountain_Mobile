@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -23691,6 +23691,18 @@ MonoBehaviour:
           m_StringArgument: score
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1192691733}
+        m_TargetAssemblyTypeName: Ranking_Manager, Assembly-CSharp
+        m_MethodName: ShowData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &906570818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30025,6 +30037,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0985fbf6d61a394c9898d83b9e4466b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  climbTime: {fileID: 1271017586}
+  rankingIndex: []
+  rankingName:
+  - {fileID: 998259705}
+  - {fileID: 248351424}
+  - {fileID: 1209060318}
+  - {fileID: 100059662}
+  - {fileID: 1383964115}
+  - {fileID: 1346554677}
+  - {fileID: 570264262}
+  - {fileID: 1460668805}
+  - {fileID: 259107229}
+  - {fileID: 1372848981}
+  rankingScore:
+  - {fileID: 1431541210}
+  - {fileID: 249063671}
+  - {fileID: 29393806}
+  - {fileID: 1389560055}
+  - {fileID: 877921551}
+  - {fileID: 531764415}
+  - {fileID: 797940204}
+  - {fileID: 1307927186}
+  - {fileID: 58001163}
+  - {fileID: 811605413}
 --- !u!1 &1197238187
 GameObject:
   m_ObjectHideFlags: 0
@@ -31905,6 +31941,10 @@ MonoBehaviour:
   elapsedTime: 0
   stageManager: {fileID: 562071252}
   mountainInfo: {fileID: 817001185}
+  rankingSystemData:
+    txtRank: []
+    txtNickName: []
+    txtScore: []
 --- !u!1 &1279580219
 GameObject:
   m_ObjectHideFlags: 0
@@ -39194,9 +39234,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 817001184}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -52, y: -329}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -348.43, y: -129}
   m_SizeDelta: {x: 160, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1632070094

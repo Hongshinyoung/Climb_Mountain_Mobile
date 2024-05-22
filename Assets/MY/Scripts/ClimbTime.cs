@@ -16,7 +16,7 @@ public class ClimbTime : MonoBehaviour
     public StageManager stageManager;
     public MountainInfo mountainInfo;
     private ClimbingTimeData climbingTime;
-    private RankingSystemData rankingSystemData;
+    public RankingSystemData rankingSystemData;
     private const string filePath = "ClimbData";
     private void Awake()
     {
