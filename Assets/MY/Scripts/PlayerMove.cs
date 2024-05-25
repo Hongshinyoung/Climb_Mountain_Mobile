@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class PlayerMove : MonoBehaviour
 {
     public Animator animator;
-    private bool isSlowWalk = true;
+    private bool isWalk = true;
     private float transitionTime = 3f;
 
     public ParticleSystem buff;
@@ -26,9 +26,9 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isSlowWalk)
+        if (isWalk)
         {
-            animator.SetBool("is_Walk", true);
+            animator.SetBool("isHappyWalk", true);
         }
         if (map.moveSpeed > 2)
         {
@@ -40,10 +40,10 @@ public class PlayerMove : MonoBehaviour
     // 슬로우 런 버튼을 눌렀을 때 실행될 코루틴
     public IEnumerator SRunCoroutine()
     {
-        if (isSlowWalk)
+        if (isWalk)
         {
-            isSlowWalk = false;
-            animator.SetBool("is_Walk", false);
+            isWalk = false;
+            animator.SetBool("isHappyWalk", false);
             animator.SetBool("is_sRun", true);
             buff.gameObject.SetActive(true);
             map.moveSpeed = 3.5f;
@@ -56,10 +56,10 @@ public class PlayerMove : MonoBehaviour
     // 빠른 런 버튼을 눌렀을 때 실행될 코루틴
     public IEnumerator FRunCoroutine()
     {
-        if (isSlowWalk)
+        if (isWalk)
         {
-            isSlowWalk = false;
-            animator.SetBool("is_Walk", false);
+            isWalk = false;
+            animator.SetBool("isHappyWalk", false);
             animator.SetBool("is_fRun", true);
             buff.gameObject.SetActive(true);
             map.moveSpeed = 5f;
@@ -72,14 +72,12 @@ public class PlayerMove : MonoBehaviour
     public void SRun()
     {
         StartCoroutine(SRunCoroutine());
-        // ResetToWalk();
     }
 
     // 빠른 런 버튼을 눌렀을 때 호출될 함수
     public void FRun()
     {
         StartCoroutine(FRunCoroutine());
-        // ResetToWalk();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -109,10 +107,10 @@ public class PlayerMove : MonoBehaviour
     // 워킹 상태로 변경하는 함수
     public void ResetToWalk()
     {
-        isSlowWalk = true;
+        isWalk = true;
         animator.SetBool("is_sRun", false);
         animator.SetBool("is_fRun", false);
-        animator.SetBool("is_Walk", true);
+        animator.SetBool("isHappyWalk", true);
         animator.SetBool("realFast", false);
         buff.gameObject.SetActive(false);
         map.moveSpeed = 1.5f;
