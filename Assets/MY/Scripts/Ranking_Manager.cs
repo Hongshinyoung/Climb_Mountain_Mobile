@@ -20,52 +20,42 @@ public class Ranking_Manager : MonoBehaviour
     public Text[] rankingName;
     public Text[] rankingScore;
 
-    private List<RankingSystemData> rankingSystemDataList = new List<RankingSystemData>();
+    private List<User> rankingList = new List<User>();
 
-    void SaveRankingData()
+    public FirebaseManager firebaseManager;
+
+    private void Start()
     {
-
+        firebaseManager = FindObjectOfType<FirebaseManager>();
+        LoadRankingData();
     }
 
-    public void ShowData()
+    public void SaveRankingData(string userId, string userName, int userScore)
     {
-        rankingSystemData.txtRank = rankingIndex;
-        rankingSystemData.txtNickName = rankingName;
-        rankingSystemData.txtScore = rankingScore;
+        firebaseManager.SaveRankingData(userId, userName, userScore);
     }
 
     public void LoadRankingData()
     {
-        //여기서 로그인 아이디 출력
+        firebaseManager.LoadRankingData(UpdateRankingUI);
+    }
 
-        GPGSBinder.Inst.Login((success, userId) =>
+    private void UpdateRankingUI(List<User> rankingData)
+    {
+        rankingList = rankingData;
+        rankingList.Sort((a, b) => b.score.CompareTo(a.score)); // 점수 내림차순으로 정렬
+
+        for (int i = 0; i < rankingList.Count && i < rankingSystemData.txtRank.Length; i++)
         {
-            if (success)
-            {
-                rankingSystemData.txtNickName[0].text = userId.ToString(); //랭킹 닉네임 = 구글유저아이디
-            }
-            else
-            {
-                Debug.Log("로그인실패");
-            }
-        });
+            rankingSystemData.txtRank[i].text = (i + 1).ToString();
+            rankingSystemData.txtNickName[i].text = rankingList[i].username;
+            rankingSystemData.txtScore[i].text = rankingList[i].score.ToString();
+        }
     }
 
-    void AddNickName(RankingSystemData name)
+    public void ScoreUpdate(string userId, string userName, int userScore)
     {
-        rankingSystemDataList.Add(name);
+        SaveRankingData(userId, userName, userScore);
+        LoadRankingData();
     }
-   
-    public void ScoreUpdate(string score) //climbTime에서 시간을 점수로 변환가져옴
-    {
-        climbTime.UpdateRankingData(score);
-        SortScoreList();
-    }
-
-    void SortScoreList()
-    {
-        rankingSystemDataList.Sort((a,b) => int.Parse(b.txtScore[0].text).CompareTo(int.Parse(a.txtScore[0].text))); //랭킹 스코어 내림차순으로 정렬
-    }
-
-
 }

@@ -1,13 +1,13 @@
 using Firebase;
 using Firebase.Database;
 using Firebase.Extensions;
+using System.Collections.Generic;
 using UnityEngine;
-
 public class User
 {
-    public string username; //닉네임
+    public string username; // 닉네임
     public string email;
-    public int score; //점수
+    public int score; // 점수
 
     public User() { }
 
@@ -85,19 +85,61 @@ public class FirebaseManager : MonoBehaviour
             }
         });
     }
-    private void SaveUserItems()
+
+    public void SaveUserItems()
     {
         DataManager dataManager = DataManager.Instance;
         dataManager.SaveInventoryData();
         dataManager.SaveGoldData();
-        
-        Debug.Log("아이템 및 골드 데이터 저장완료");
+
+        Debug.Log("아이템 및 골드 데이터 저장 완료");
     }
-    private void LoadUserItems()
+
+    public void LoadUserItems()
     {
         DataManager dataManager = DataManager.Instance;
         dataManager.LoadInventoryData();
         dataManager.LoadGoldData();
-        Debug.Log("아이템 및 골드 데이터 로드완료");
+        Debug.Log("아이템 및 골드 데이터 로드 완료");
+    }
+
+    public void SaveRankingData(string userId, string userName, int userScore)
+    {
+        reference.Child("ranking").Child(userId).SetRawJsonValueAsync(JsonUtility.ToJson(new User(userName, "", userScore))).ContinueWithOnMainThread(task =>
+        {
+            if (task.IsCompleted)
+            {
+                Debug.Log("랭킹 데이터 저장 성공");
+            }
+            else
+            {
+                Debug.LogError("랭킹 데이터 저장 실패: " + task.Exception);
+            }
+        });
+    }
+
+    public void LoadRankingData(System.Action<List<User>> onLoaded)
+    {
+        reference.Child("ranking").GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted)
+            {
+                Debug.LogError("랭킹 데이터 로드 실패: " + task.Exception);
+            }
+            else if (task.IsCompleted)
+            {
+                DataSnapshot snapshot = task.Result;
+                List<User> rankingList = new List<User>();
+
+                foreach (DataSnapshot userSnapshot in snapshot.Children)
+                {
+                    User user = JsonUtility.FromJson<User>(userSnapshot.GetRawJsonValue());
+                    rankingList.Add(user);
+                }
+
+                onLoaded?.Invoke(rankingList);
+                Debug.Log("랭킹 데이터 로드 성공");
+            }
+        });
     }
 }
