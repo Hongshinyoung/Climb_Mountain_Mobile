@@ -44,7 +44,7 @@ public class PlayerMove : MonoBehaviour
         {
             isWalk = false;
             animator.SetBool("isHappyWalk", false);
-            animator.SetBool("is_sRun", true);
+            animator.SetBool("isSlowRun", true);
             buff.gameObject.SetActive(true);
             map.moveSpeed = 3.5f;
             yield return new WaitForSeconds(transitionTime);
@@ -60,7 +60,7 @@ public class PlayerMove : MonoBehaviour
         {
             isWalk = false;
             animator.SetBool("isHappyWalk", false);
-            animator.SetBool("is_fRun", true);
+            animator.SetBool("isFastRun", true);
             buff.gameObject.SetActive(true);
             map.moveSpeed = 5f;
             yield return new WaitForSeconds(transitionTime);
@@ -85,7 +85,7 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             //뒤로 조금 이동했다 다시 제자리로 돌아오게
-            animator.SetTrigger("is_die");
+            animator.SetTrigger("doDie");
             StartCoroutine(StopWalk());
         }
 
@@ -108,11 +108,12 @@ public class PlayerMove : MonoBehaviour
     public void ResetToWalk()
     {
         isWalk = true;
-        animator.SetBool("is_sRun", false);
-        animator.SetBool("is_fRun", false);
+        animator.SetBool("isSlowRun", false);
+        animator.SetBool("isFastRun", false);
         animator.SetBool("isHappyWalk", true);
         animator.SetBool("realFast", false);
         buff.gameObject.SetActive(false);
         map.moveSpeed = 1.5f;
     }
+
 }

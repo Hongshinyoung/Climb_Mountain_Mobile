@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class InventoryItemController : MonoBehaviour
 {
@@ -17,12 +18,14 @@ public class InventoryItemController : MonoBehaviour
 
     public void UseItem()
     {
+        RemoveItem();
         switch (item.id)
         {
             case 0:
                 Debug.Log("지정된 아이템이 없습니다.");
                 break;
             case 1:
+               
                 Debug.Log("바나나");
                 player.SRun();
                 break;
@@ -32,17 +35,7 @@ public class InventoryItemController : MonoBehaviour
                 break;
 
         }
-        RemoveItem();
-        //if (item.itemName == "Juice")
-        //{
-        //    Debug.Log("Juice 아이템 사용");
-        //    player.SRun();
-        //}
-        //else if (item.itemName == "Banana")
-        //{
-        //    Debug.Log("Banana 아이템 사용");
-        //    player.FRun();
-        //}
+
 
     }
 }
