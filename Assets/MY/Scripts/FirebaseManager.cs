@@ -1,13 +1,15 @@
 using Firebase;
 using Firebase.Database;
 using Firebase.Extensions;
-using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Collections.Generic;
+
 public class User
 {
-    public string username; // 닉네임
+    public string username;
     public string email;
-    public int score; // 점수
+    public int score;
 
     public User() { }
 
@@ -19,93 +21,101 @@ public class User
     }
 }
 
+
 public class FirebaseManager : MonoBehaviour
 {
-    DatabaseReference reference;
+    private DatabaseReference reference;
 
     private void Start()
     {
         reference = FirebaseDatabase.DefaultInstance.RootReference;
     }
 
-    private void writeNewUser(string userId, string name, string email, int score)
+    public void SaveGoldData(string userId, int gold)
     {
-        User user = new User(name, email, score);
-        string json = JsonUtility.ToJson(user);
-        reference.Child("users").Child(userId).SetRawJsonValueAsync(json).ContinueWithOnMainThread(task =>
+        reference.Child("users").Child(userId).Child("gold").SetValueAsync(gold).ContinueWithOnMainThread(task =>
         {
             if (task.IsCompleted)
             {
-                Debug.Log("데이터 저장 성공");
+                Debug.Log("골드 데이터 저장 성공");
             }
             else
             {
-                Debug.LogError("데이터 저장 실패: " + task.Exception);
+                Debug.LogError("골드 데이터 저장 실패: " + task.Exception);
             }
         });
     }
 
-    private void updateUser(string userId, string newName, string newEmail, int score)
+    public void LoadGoldData(string userId, Action<int> onGoldLoaded)
     {
-        // 사용자의 기존 데이터를 로드합니다
-        reference.Child("users").Child(userId).GetValueAsync().ContinueWithOnMainThread(task =>
+        reference.Child("users").Child(userId).Child("gold").GetValueAsync().ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted)
             {
-                Debug.LogError("데이터 로드 실패: " + task.Exception);
+                Debug.LogError("골드 데이터 로드 실패: " + task.Exception);
+                onGoldLoaded?.Invoke(-1);
             }
             else if (task.IsCompleted)
             {
                 DataSnapshot snapshot = task.Result;
                 if (snapshot.Exists)
                 {
-                    User existingUser = JsonUtility.FromJson<User>(snapshot.GetRawJsonValue());
-                    existingUser.username = newName;
-                    existingUser.email = newEmail;
-                    existingUser.score = score;
-
-                    // 수정된 데이터를 다시 저장합니다
-                    string updatedJson = JsonUtility.ToJson(existingUser);
-                    reference.Child("users").Child(userId).SetRawJsonValueAsync(updatedJson).ContinueWithOnMainThread(saveTask =>
-                    {
-                        if (saveTask.IsCompleted)
-                        {
-                            Debug.Log("데이터 업데이트 성공");
-                        }
-                        else
-                        {
-                            Debug.LogError("데이터 업데이트 실패: " + saveTask.Exception);
-                        }
-                    });
+                    onGoldLoaded?.Invoke(Convert.ToInt32(snapshot.Value));
                 }
                 else
                 {
-                    Debug.LogError("사용자 데이터를 찾을 수 없습니다.");
+                    Debug.LogError("골드 데이터를 찾을 수 없습니다.");
+                    onGoldLoaded?.Invoke(-1);
                 }
             }
         });
     }
 
-    public void SaveUserItems()
+    public void SaveInventoryData(string userId, string json)
     {
-        DataManager dataManager = DataManager.Instance;
-        dataManager.SaveInventoryData();
-        dataManager.SaveGoldData();
-
-        Debug.Log("아이템 및 골드 데이터 저장 완료");
+        reference.Child("users").Child(userId).Child("inventory").SetRawJsonValueAsync(json).ContinueWithOnMainThread(task =>
+        {
+            if (task.IsCompleted)
+            {
+                Debug.Log("인벤토리 데이터 저장 성공");
+            }
+            else
+            {
+                Debug.LogError("인벤토리 데이터 저장 실패: " + task.Exception);
+            }
+        });
     }
 
-    public void LoadUserItems()
+    public void LoadInventoryData(string userId, Action<InventoryManager.ItemListWrapper> onInventoryLoaded)
     {
-        DataManager dataManager = DataManager.Instance;
-        dataManager.LoadInventoryData();
-        dataManager.LoadGoldData();
-        Debug.Log("아이템 및 골드 데이터 로드 완료");
+        reference.Child("users").Child(userId).Child("inventory").GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted)
+            {
+                Debug.LogError("인벤토리 데이터 로드 실패: " + task.Exception);
+                onInventoryLoaded?.Invoke(null);
+            }
+            else if (task.IsCompleted)
+            {
+                DataSnapshot snapshot = task.Result;
+                if (snapshot.Exists)
+                {
+                    InventoryManager.ItemListWrapper items = JsonUtility.FromJson<InventoryManager.ItemListWrapper>(snapshot.GetRawJsonValue());
+                    onInventoryLoaded?.Invoke(items);
+                }
+                else
+                {
+                    Debug.LogError("인벤토리 데이터를 찾을 수 없습니다.");
+                    onInventoryLoaded?.Invoke(null);
+                }
+            }
+        });
     }
-
     public void SaveRankingData(string userId, string userName, int userScore)
     {
-        reference.Child("ranking").Child(userId).SetRawJsonValueAsync(JsonUtility.ToJson(new User(userName, "", userScore))).ContinueWithOnMainThread(task =>
+        User user = new User(userName, "", userScore); // 이메일은 여기서 생략 가능
+        string json = JsonUtility.ToJson(user);
+        reference.Child("rankings").Child(userId).SetRawJsonValueAsync(json).ContinueWithOnMainThread(task =>
         {
             if (task.IsCompleted)
             {
@@ -118,27 +128,33 @@ public class FirebaseManager : MonoBehaviour
         });
     }
 
-    public void LoadRankingData(System.Action<List<User>> onLoaded)
+    public void LoadRankingData(Action<List<User>> onRankingDataLoaded)
     {
-        reference.Child("ranking").GetValueAsync().ContinueWithOnMainThread(task =>
+        reference.Child("rankings").GetValueAsync().ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted)
             {
                 Debug.LogError("랭킹 데이터 로드 실패: " + task.Exception);
+                onRankingDataLoaded?.Invoke(null);
             }
             else if (task.IsCompleted)
             {
                 DataSnapshot snapshot = task.Result;
-                List<User> rankingList = new List<User>();
-
-                foreach (DataSnapshot userSnapshot in snapshot.Children)
+                if (snapshot.Exists)
                 {
-                    User user = JsonUtility.FromJson<User>(userSnapshot.GetRawJsonValue());
-                    rankingList.Add(user);
+                    List<User> rankingList = new List<User>();
+                    foreach (DataSnapshot child in snapshot.Children)
+                    {
+                        User user = JsonUtility.FromJson<User>(child.GetRawJsonValue());
+                        rankingList.Add(user);
+                    }
+                    onRankingDataLoaded?.Invoke(rankingList);
                 }
-
-                onLoaded?.Invoke(rankingList);
-                Debug.Log("랭킹 데이터 로드 성공");
+                else
+                {
+                    Debug.LogError("랭킹 데이터를 찾을 수 없습니다.");
+                    onRankingDataLoaded?.Invoke(null);
+                }
             }
         });
     }

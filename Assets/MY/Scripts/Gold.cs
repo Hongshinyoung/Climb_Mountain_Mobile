@@ -1,15 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using System.Collections;
 
 public class Gold : MonoBehaviour
 {
     public static Gold Instance { get; private set; }
-
     private int gold = 130;
     private Coroutine autoIncreaseCoroutine;
     public Item item;
+    private FirebaseManager firebaseManager;
+    private string userId;
 
     private void Awake()
     {
@@ -17,6 +16,8 @@ public class Gold : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject); // 다른 GoldManager가 이미 있다면 이 오브젝트를 파괴
+
+        firebaseManager = FindObjectOfType<FirebaseManager>();
     }
 
     private void Start()
@@ -24,32 +25,35 @@ public class Gold : MonoBehaviour
         autoIncreaseCoroutine = StartCoroutine(AutoIncreaseGold());
     }
 
-    //private void OnDisable()
-    //{
-    //    if (autoIncreaseCoroutine != null)
-    //        StopCoroutine(autoIncreaseCoroutine);
-    //}
+    public void SetUserId(string userId)
+    {
+        this.userId = userId;
+        LoadGoldData();
+    }
 
     public int GetGold()
     {
         return gold;
     }
 
-    public void SetGold(int updataGold)
+    public void SetGold(int updateGold)
     {
-        gold =  updataGold;
+        gold = updateGold;
+        SaveGoldData();
     }
 
-    public void EarnGold() //sell
+    public void EarnGold()
     {
         gold += item.itemPrice;
+        SaveGoldData();
     }
 
-    public bool UseGold(int amount) //buy
+    public bool UseGold(int amount)
     {
         if (gold >= amount)
         {
             gold -= amount;
+            SaveGoldData();
             return true;
         }
         else
@@ -58,9 +62,32 @@ public class Gold : MonoBehaviour
         }
     }
 
+    private void SaveGoldData()
+    {
+        if (!string.IsNullOrEmpty(userId))
+        {
+            firebaseManager.SaveGoldData(userId, gold);
+        }
+    }
+
+    private void LoadGoldData()
+    {
+        if (!string.IsNullOrEmpty(userId))
+        {
+            firebaseManager.LoadGoldData(userId, (loadedGold) =>
+            {
+                if (loadedGold != -1)
+                {
+                    gold = loadedGold;
+                }
+            });
+        }
+    }
+
     private void IncreaseGold()
     {
         gold += 1;
+        SaveGoldData();
     }
 
     IEnumerator AutoIncreaseGold()

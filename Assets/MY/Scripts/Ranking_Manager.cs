@@ -1,8 +1,7 @@
+using Firebase.Auth;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Firebase.Storage;
-using Firebase.Analytics;
 
 [System.Serializable]
 public class RankingSystemData
@@ -15,24 +14,27 @@ public class RankingSystemData
 public class Ranking_Manager : MonoBehaviour
 {
     public RankingSystemData rankingSystemData;
-    public ClimbTime climbTime;
+    public ClimbTime climbTime; // 게임 로직과 관련된 다른 스크립트인 것으로 가정
     public Text[] rankingIndex;
     public Text[] rankingName;
     public Text[] rankingScore;
 
     private List<User> rankingList = new List<User>();
-
-    public FirebaseManager firebaseManager;
+    private FirebaseManager firebaseManager;
+    private string userId;
+    private string userName;
 
     private void Start()
     {
         firebaseManager = FindObjectOfType<FirebaseManager>();
+        userId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+        userName = FirebaseAuth.DefaultInstance.CurrentUser.DisplayName;
         LoadRankingData();
     }
 
-    public void SaveRankingData(string userId, string userName, int userScore)
+    public void SaveRankingData(int score)
     {
-        firebaseManager.SaveRankingData(userId, userName, userScore);
+        firebaseManager.SaveRankingData(userId, userName, score);
     }
 
     public void LoadRankingData()
@@ -42,6 +44,12 @@ public class Ranking_Manager : MonoBehaviour
 
     private void UpdateRankingUI(List<User> rankingData)
     {
+        if (rankingData == null)
+        {
+            Debug.LogError("랭킹 데이터를 불러오는 중 오류 발생");
+            return;
+        }
+
         rankingList = rankingData;
         rankingList.Sort((a, b) => b.score.CompareTo(a.score)); // 점수 내림차순으로 정렬
 
@@ -53,9 +61,9 @@ public class Ranking_Manager : MonoBehaviour
         }
     }
 
-    public void ScoreUpdate(string userId, string userName, int userScore)
+    public void ScoreUpdate(int score)
     {
-        SaveRankingData(userId, userName, userScore);
+        SaveRankingData(score);
         LoadRankingData();
     }
 }
