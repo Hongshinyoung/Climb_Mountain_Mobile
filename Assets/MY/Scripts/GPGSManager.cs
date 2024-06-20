@@ -39,8 +39,8 @@ public class GPGSManager : MonoBehaviour
                         Debug.Log("Firebase 인증 성공");
                         string userId = auth.CurrentUser.UserId;
                         // GPGSManager의 userId를 다른 스크립트에 전달
-                        Gold.Instance.SetUserId(userId);
-                        InventoryManager.Instance.SetUserId(userId);
+                  //      Gold.Instance.SetUserId(userId);
+                 //       InventoryManager.Instance.SetUserId(userId);
                     }
                     else
                     {

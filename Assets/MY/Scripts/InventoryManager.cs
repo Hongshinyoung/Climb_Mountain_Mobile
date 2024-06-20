@@ -1,6 +1,9 @@
+using System.Collections;
+using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -8,88 +11,51 @@ public class InventoryManager : MonoBehaviour
     public List<Item> items = new List<Item>();
     public Transform itemContent;
     public GameObject inventoryItem;
-    private FirebaseManager firebaseManager;
-    private string userId;
-
+    public InventoryItemController inventoryItemController;
+    public PlayerMove player;
     private void Awake()
     {
         Instance = this;
-        firebaseManager = FindObjectOfType<FirebaseManager>();
-    }
-
-    public void SetUserId(string userId)
-    {
-        this.userId = userId;
-        LoadInventoryData();
     }
 
     public void Add(Item item)
     {
         items.Add(item);
-        SaveInventoryData();
-        ListItems(); // Update the UI whenever an item is added
     }
 
     public void Remove(Item item)
     {
         items.Remove(item);
-        SaveInventoryData();
-        ListItems(); // Update the UI whenever an item is removed
     }
 
     public void ListItems()
     {
-        // Clear existing items in the UI
+        // 인벤토리 창을 업데이트할 때마다 모든 아이템을 삭제하고 다시 추가
         foreach (Transform item in itemContent)
         {
             Destroy(item.gameObject);
         }
 
-        // Populate UI with current inventory items
         foreach (var item in items)
         {
             GameObject obj = Instantiate(inventoryItem, itemContent);
             var controller = obj.GetComponent<InventoryItemController>();
             controller.item = item;
+            // var player = obj.GetComponent<PlayerMove>();
 
             var itemName = obj.transform.Find("itemName").GetComponent<Text>();
             var itemIcon = obj.transform.Find("itemIcon").GetComponent<Image>();
-            var clickItem = obj.GetComponentInChildren<Button>();
+            var ClickItem = obj.GetComponentInChildren<Button>();
 
-            clickItem.onClick.AddListener(() => controller.UseItem());
+            ClickItem.onClick.AddListener(() => controller.UseItem());
+            ClickItem.onClick.AddListener(() => player.SRun());
+            // ClickItem.onClick.AddListener(() => controller.RemoveItem());
+            // ClickItem.onClick.AddListener(() => player.SRun());
 
             itemName.text = item.itemName;
             itemIcon.sprite = item.itemIcon;
         }
     }
 
-    private void SaveInventoryData()
-    {
-        if (!string.IsNullOrEmpty(userId))
-        {
-            string json = JsonUtility.ToJson(new ItemListWrapper { items = items });
-            firebaseManager.SaveInventoryData(userId, json);
-        }
-    }
 
-    private void LoadInventoryData()
-    {
-        if (!string.IsNullOrEmpty(userId))
-        {
-            firebaseManager.LoadInventoryData(userId, (loadedItems) =>
-            {
-                if (loadedItems != null)
-                {
-                    items = loadedItems.items;
-                    ListItems(); // Update the UI after loading the inventory
-                }
-            });
-        }
-    }
-
-    [System.Serializable]
-    public class ItemListWrapper
-    {
-        public List<Item> items;
-    }
 }

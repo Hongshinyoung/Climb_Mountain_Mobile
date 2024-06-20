@@ -26,7 +26,7 @@ public class InventoryItemController : MonoBehaviour
                 break;
             case 1:
                
-                Debug.Log("바나나");
+                Debug.Log("바나나");   
                 player.SRun();
                 break;
             case 2:
